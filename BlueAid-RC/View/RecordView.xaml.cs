@@ -1,4 +1,5 @@
 ﻿using BlueAid_RC.Model;
+using BlueAid_RC.Util;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -65,13 +66,21 @@ namespace BlueAid_RC.View
         // Rotation Helper to simplify handling rotation compensation for the camera streams
         private CameraRotationHelper _rotationHelper;
 
+        private readonly string videoPath = "video";
+        private readonly string audioPath = "audio";
+
+        private AudioHandler _audioHandler;
+        //private MediaCapture _audioCapture;
+
         public RecordView()
         {
             this.InitializeComponent();
 
             NavigationCacheMode = NavigationCacheMode.Disabled;
+
+            _audioHandler = new AudioHandler();
         }
-        private void Application_Suspending(object sender, SuspendingEventArgs e)
+        private async void Application_Suspending(object sender, SuspendingEventArgs e)
         {
             _isSuspending = false;
 
@@ -102,6 +111,10 @@ namespace BlueAid_RC.View
 
             _isActivePage = true;
             await SetUpBasedOnStateAsync();
+
+            User user = e.Parameter as User;
+            txtUserName.Text = user.userName;
+            txtUserNumber.Text = user.userNumber;
         }
 
         protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -144,6 +157,7 @@ namespace BlueAid_RC.View
                     else if (!_isInitialized)
                     {
                         await InitializeCameraAsync();
+                        await _audioHandler?.InitializeAudioAsync();
                     }
                 }
             });
@@ -154,10 +168,12 @@ namespace BlueAid_RC.View
             if (!_isRecording)
             {
                 await StartRecordingAsync();
+                await _audioHandler?.StartAudioRecording();
             }
             else
             {
                 await StopRecordingAsync();
+                await _audioHandler?.StopAudioRecording();
             }
 
             // After starting or stopping video recording, update the UI to reflect the MediaCapture state
@@ -213,7 +229,7 @@ namespace BlueAid_RC.View
                 _mediaCapture.RecordLimitationExceeded += MediaCapture_RecordLimitationExceeded;
                 _mediaCapture.Failed += MediaCapture_Failed;
 
-                var settings = new MediaCaptureInitializationSettings { VideoDeviceId = cameraDevice.Id };
+                var settings = new MediaCaptureInitializationSettings { VideoDeviceId = cameraDevice.Id};
 
                 // Initialize MediaCapture
                 try
@@ -350,9 +366,16 @@ namespace BlueAid_RC.View
             try
             {
                 // Create storage file for the capture
-                var videoFile = await _captureFolder.CreateFileAsync("SimpleVideo.mp4", CreationCollisionOption.GenerateUniqueName);
+                var userPath = txtUserName.Text + "_" + txtUserNumber.Text;
+                var captureFileName = "SimpleVideo.mp4";
+                var captureFullPath = Path.Combine(videoPath, userPath, captureFileName);
+                var videoFile = await _captureFolder.CreateFileAsync(captureFullPath, CreationCollisionOption.GenerateUniqueName);
 
+               
                 var encodingProfile = MediaEncodingProfile.CreateMp4(VideoEncodingQuality.Auto);
+
+                var audioFileName = "SimpleAudio.wav";
+                await _audioHandler?.SetAudioSavePath(Path.Combine(userPath, audioFileName));
 
                 // Calculate rotation angle, taking mirroring into account if necessary
                 var rotationAngle = CameraRotationHelper.ConvertSimpleOrientationToClockwiseDegrees(_rotationHelper.GetCameraCaptureOrientation());
@@ -361,6 +384,7 @@ namespace BlueAid_RC.View
                 Debug.WriteLine("Starting recording to " + videoFile.Path);
 
                 await _mediaCapture.StartRecordToStorageFileAsync(encodingProfile, videoFile);
+                
                 _isRecording = true;
 
                 Debug.WriteLine("Started recording!");
@@ -382,7 +406,7 @@ namespace BlueAid_RC.View
 
             _isRecording = false;
             await _mediaCapture.StopRecordAsync();
-
+            //await _audioHandler.StopAudioAsync();
             Debug.WriteLine("Stopped recording!");
         }
 
@@ -460,6 +484,7 @@ namespace BlueAid_RC.View
                     {
                         await SetupUiAsync();
                         await InitializeCameraAsync();
+                        await _audioHandler?.InitializeAudioAsync();
                     }
                     else
                     {
@@ -482,13 +507,7 @@ namespace BlueAid_RC.View
             // Attempt to lock page to landscape orientation to prevent the CaptureElement from rotating, as this gives a better experience
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.Landscape;
 
-            // Hide the status bar
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                //await Windows.UI.ViewManagement.StatusBar.GetForCurrentView().HideAsync();
-            }
-
-            var picturesLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Pictures);
+            StorageLibrary picturesLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Pictures);
             // Fall back to the local app storage if the Pictures Library is not available
             _captureFolder = picturesLibrary.SaveFolder ?? ApplicationData.Current.LocalFolder;
         }
@@ -520,7 +539,7 @@ namespace BlueAid_RC.View
             // Update recording button to show "Stop" icon instead of red "Record" icon
             StartRecordingIcon.Visibility = _isRecording ? Visibility.Collapsed : Visibility.Visible;
             StopRecordingIcon.Visibility = _isRecording ? Visibility.Visible : Visibility.Collapsed;
-
+            System.Console.WriteLine("test");
         }
 
         /// <summary>
