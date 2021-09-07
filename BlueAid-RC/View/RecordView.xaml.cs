@@ -63,14 +63,13 @@ namespace BlueAid_RC.View
         private bool _mirroringPreview;
         private bool _externalCamera;
 
-        // Rotation Helper to simplify handling rotation compensation for the camera streams
-        private CameraRotationHelper _rotationHelper;
-
         private readonly string videoPath = "video";
         private readonly string audioPath = "audio";
 
+        private string userName = string.Empty;
+        private string userNumber = string.Empty;
+
         private AudioHandler _audioHandler;
-        //private MediaCapture _audioCapture;
 
         public RecordView()
         {
@@ -113,8 +112,8 @@ namespace BlueAid_RC.View
             await SetUpBasedOnStateAsync();
 
             User user = e.Parameter as User;
-            txtUserName.Text = user.userName;
-            txtUserNumber.Text = user.userNumber;
+            userName = user.userName;
+            userNumber = user.userNumber;
         }
 
         protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -141,27 +140,27 @@ namespace BlueAid_RC.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="args"></param>
-        private async void SystemMediaControls_PropertyChanged(SystemMediaTransportControls sender, SystemMediaTransportControlsPropertyChangedEventArgs args)
-        {
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-            {
-                // Only handle this event if this page is currently being displayed
-                if (args.Property == SystemMediaTransportControlsProperty.SoundLevel && Frame.CurrentSourcePageType == typeof(MainPage))
-                {
-                    // Check to see if the app is being muted. If so, it is being minimized.
-                    // Otherwise if it is not initialized, it is being brought into focus.
-                    if (sender.SoundLevel == SoundLevel.Muted)
-                    {
-                        await CleanupCameraAsync();
-                    }
-                    else if (!_isInitialized)
-                    {
-                        await InitializeCameraAsync();
-                        await _audioHandler?.InitializeAudioAsync();
-                    }
-                }
-            });
-        }
+        //private async void SystemMediaControls_PropertyChanged(SystemMediaTransportControls sender, SystemMediaTransportControlsPropertyChangedEventArgs args)
+        //{
+        //    await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
+        //    {
+        //        // Only handle this event if this page is currently being displayed
+        //        if (args.Property == SystemMediaTransportControlsProperty.SoundLevel && Frame.CurrentSourcePageType == typeof(MainPage))
+        //        {
+        //            // Check to see if the app is being muted. If so, it is being minimized.
+        //            // Otherwise if it is not initialized, it is being brought into focus.
+        //            if (sender.SoundLevel == SoundLevel.Muted)
+        //            {
+        //                await CleanupCameraAsync();
+        //            }
+        //            else if (!_isInitialized)
+        //            {
+        //                await InitializeCameraAsync();
+        //                await _audioHandler?.InitializeAudioAsync();
+        //            }
+        //        }
+        //    });
+        //}
 
         private async void VideoButton_Click(object sender, RoutedEventArgs e)
         {
@@ -170,13 +169,18 @@ namespace BlueAid_RC.View
                 await StartRecordingAsync();
                 await _audioHandler?.StartAudioRecording();
             }
-            else
+
+            // After starting or stopping video recording, update the UI to reflect the MediaCapture state
+            UpdateCaptureControls();
+        }
+        private async void StopBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (_isRecording)
             {
                 await StopRecordingAsync();
                 await _audioHandler?.StopAudioRecording();
             }
 
-            // After starting or stopping video recording, update the UI to reflect the MediaCapture state
             UpdateCaptureControls();
         }
 
@@ -229,7 +233,7 @@ namespace BlueAid_RC.View
                 _mediaCapture.RecordLimitationExceeded += MediaCapture_RecordLimitationExceeded;
                 _mediaCapture.Failed += MediaCapture_Failed;
 
-                var settings = new MediaCaptureInitializationSettings { VideoDeviceId = cameraDevice.Id};
+                var settings = new MediaCaptureInitializationSettings { VideoDeviceId = cameraDevice.Id };
 
                 // Initialize MediaCapture
                 try
@@ -260,41 +264,11 @@ namespace BlueAid_RC.View
                         _mirroringPreview = (cameraDevice.EnclosureLocation.Panel == Windows.Devices.Enumeration.Panel.Front);
                     }
 
-                    // Initialize rotationHelper
-                    _rotationHelper = new CameraRotationHelper(cameraDevice.EnclosureLocation);
-                    _rotationHelper.OrientationChanged += RotationHelper_OrientationChanged;
-
                     await StartPreviewAsync();
 
                     UpdateCaptureControls();
                 }
             }
-        }
-
-        /// <summary>
-        /// Handles an orientation changed event
-        /// </summary>
-        private async void RotationHelper_OrientationChanged(object sender, bool updatePreview)
-        {
-            if (updatePreview)
-            {
-                await SetPreviewRotationAsync();
-            }
-            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => UpdateButtonOrientation());
-        }
-
-        /// <summary>
-        /// Uses the current device orientation in space and page orientation on the screen to calculate the rotation
-        /// transformation to apply to the controls
-        /// </summary>
-        private void UpdateButtonOrientation()
-        {
-            // Rotate the buttons in the UI to match the rotation of the device
-            var angle = CameraRotationHelper.ConvertSimpleOrientationToClockwiseDegrees(_rotationHelper.GetUIOrientation());
-            var transform = new RotateTransform { Angle = angle };
-
-            // The RenderTransform is safe to use (i.e. it won't cause layout issues) in this case, because these buttons have a 1:1 aspect ratio
-            VideoButton.RenderTransform = transform;
         }
 
         /// <summary>
@@ -313,27 +287,6 @@ namespace BlueAid_RC.View
             // Start the preview
             await _mediaCapture.StartPreviewAsync();
             _isPreviewing = true;
-
-            // Initialize the preview to the current orientation
-            if (_isPreviewing)
-            {
-                await SetPreviewRotationAsync();
-            }
-        }
-
-        /// <summary>
-        /// Gets the current orientation of the UI in relation to the device (when AutoRotationPreferences cannot be honored) and applies a corrective rotation to the preview
-        /// </summary>
-        private async Task SetPreviewRotationAsync()
-        {
-            // Only need to update the orientation if the camera is mounted on the device
-            if (_externalCamera) return;
-
-            // Add rotation metadata to the preview stream to make sure the aspect ratio / dimensions match when rendering and getting preview frames
-            var rotation = _rotationHelper.GetCameraPreviewOrientation();
-            var props = _mediaCapture.VideoDeviceController.GetMediaStreamProperties(MediaStreamType.VideoPreview);
-            props.Properties.Add(RotationKey, CameraRotationHelper.ConvertSimpleOrientationToClockwiseDegrees(rotation));
-            await _mediaCapture.SetEncodingPropertiesAsync(MediaStreamType.VideoPreview, props, null);
         }
 
         /// <summary>
@@ -366,25 +319,20 @@ namespace BlueAid_RC.View
             try
             {
                 // Create storage file for the capture
-                var userPath = txtUserName.Text + "_" + txtUserNumber.Text;
-                var captureFileName = "SimpleVideo.mp4";
+                var userPath = userName + "_" + userNumber;
+                var captureFileName = $"chapter{FlipViewControl.SelectedIndex}.mp4";
                 var captureFullPath = Path.Combine(videoPath, userPath, captureFileName);
-                var videoFile = await _captureFolder.CreateFileAsync(captureFullPath, CreationCollisionOption.GenerateUniqueName);
+                var videoFile = await _captureFolder.CreateFileAsync(captureFullPath, CreationCollisionOption.ReplaceExisting);
 
-               
                 var encodingProfile = MediaEncodingProfile.CreateMp4(VideoEncodingQuality.Auto);
 
                 var audioFileName = "SimpleAudio.wav";
                 await _audioHandler?.SetAudioSavePath(Path.Combine(userPath, audioFileName));
 
-                // Calculate rotation angle, taking mirroring into account if necessary
-                var rotationAngle = CameraRotationHelper.ConvertSimpleOrientationToClockwiseDegrees(_rotationHelper.GetCameraCaptureOrientation());
-                encodingProfile.Video.Properties.Add(RotationKey, PropertyValue.CreateInt32(rotationAngle));
-
                 Debug.WriteLine("Starting recording to " + videoFile.Path);
 
                 await _mediaCapture.StartRecordToStorageFileAsync(encodingProfile, videoFile);
-                
+
                 _isRecording = true;
 
                 Debug.WriteLine("Started recording!");
@@ -406,7 +354,6 @@ namespace BlueAid_RC.View
 
             _isRecording = false;
             await _mediaCapture.StopRecordAsync();
-            //await _audioHandler.StopAudioAsync();
             Debug.WriteLine("Stopped recording!");
         }
 
@@ -443,12 +390,6 @@ namespace BlueAid_RC.View
                 _mediaCapture.Failed -= MediaCapture_Failed;
                 _mediaCapture.Dispose();
                 _mediaCapture = null;
-            }
-
-            if (_rotationHelper != null)
-            {
-                _rotationHelper.OrientationChanged -= RotationHelper_OrientationChanged;
-                _rotationHelper = null;
             }
         }
 
@@ -510,6 +451,7 @@ namespace BlueAid_RC.View
             StorageLibrary picturesLibrary = await StorageLibrary.GetLibraryAsync(KnownLibraryId.Pictures);
             // Fall back to the local app storage if the Pictures Library is not available
             _captureFolder = picturesLibrary.SaveFolder ?? ApplicationData.Current.LocalFolder;
+            
         }
 
         /// <summary>
@@ -534,12 +476,18 @@ namespace BlueAid_RC.View
         private void UpdateCaptureControls()
         {
             // The buttons should only be enabled if the preview started sucessfully
-            VideoButton.IsEnabled = _isPreviewing;
+            //RecordBtn.IsEnabled = _isPreviewing;
+            RecordBtn.IsEnabled = !_isRecording;
+            RecordEnableIcon.Visibility = _isRecording ? Visibility.Collapsed : Visibility.Visible;
+            RecordDisEnableIcon.Visibility = _isRecording ? Visibility.Visible : Visibility.Collapsed;
 
-            // Update recording button to show "Stop" icon instead of red "Record" icon
-            StartRecordingIcon.Visibility = _isRecording ? Visibility.Collapsed : Visibility.Visible;
-            StopRecordingIcon.Visibility = _isRecording ? Visibility.Visible : Visibility.Collapsed;
-            System.Console.WriteLine("test");
+            StopBtn.IsEnabled = _isRecording;
+
+            RecordStopEnableIcon.Visibility = _isRecording ? Visibility.Visible : Visibility.Collapsed;
+            RecordStopDisEnableIcon.Visibility = _isRecording ? Visibility.Collapsed : Visibility.Visible;
+
+            //StartRecordingIcon.Visibility = _isRecording ? Visibility.Collapsed : Visibility.Visible;
+            //StopRecordingIcon2.Visibility = _isRecording ? Visibility.Visible : Visibility.Collapsed;
         }
 
         /// <summary>
@@ -557,6 +505,25 @@ namespace BlueAid_RC.View
 
             // If there is no device mounted on the desired panel, return the first device found
             return desiredDevice ?? allVideoDevices.FirstOrDefault();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (FlipViewControl.Items.Count -1 > FlipViewControl.SelectedIndex)
+            {
+                FlipViewControl.SelectedIndex++;
+                (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IMediaControl).Start();
+            }
+            else
+            {
+                Debug.WriteLine("더이상 페이지가 없습니다.");
+            }
+        }
+
+        private async void Home_Click(object sender, RoutedEventArgs e)
+        {
+            Frame frame = Window.Current.Content as Frame;
+            frame.Navigate(typeof(MainPage));
         }
     }
 }

@@ -38,7 +38,6 @@ namespace BlueAid_RC.Util
             };
             _audioCapture = new MediaCapture();
             await _audioCapture.InitializeAsync(settings);
-
         }
 
         public async Task SetAudioSavePath(string fileName)
@@ -47,15 +46,7 @@ namespace BlueAid_RC.Util
             StorageFolder storageFolder = picturesLibrary.SaveFolder ?? ApplicationData.Current.LocalFolder;
             _storageFile = await storageFolder.CreateFileAsync(
                    Path.Combine(AUDIO_FILE_PATH, fileName),
-                   CreationCollisionOption.GenerateUniqueName);
-            //if (_storageFile == null)
-            //{
-
-            //}
-            //else
-            //{
-            //    await _storageFile.RenameAsync(Path.Combine(AUDIO_FILE_PATH, fileName));
-            //}
+                   CreationCollisionOption.ReplaceExisting);
         }
 
         public async Task StartAudioRecording()

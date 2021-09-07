@@ -1,6 +1,7 @@
 ﻿using BlueAid_RC.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -28,11 +29,26 @@ namespace BlueAid_RC.View
             this.InitializeComponent();
         }
 
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
+        private async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
             User user = new User(txtUsername.Text, txtUserNumber.Text);
-            Frame frame = Window.Current.Content as Frame;
-            frame.Navigate(typeof(RecordView), user);
+            
+
+            LoginCheckDialog dialog = new LoginCheckDialog();
+            dialog.GetLoginInfo(user);
+
+            ContentDialogResult result = await dialog.ShowAsync();
+
+            if (result == ContentDialogResult.Primary)
+            {
+                Debug.WriteLine("취소");
+            }
+            else if (result == ContentDialogResult.Secondary)
+            {
+                Frame frame = Window.Current.Content as Frame;
+                frame.Navigate(typeof(RecordView), user);
+                Debug.WriteLine("확인");
+            }
         }
     }
 }

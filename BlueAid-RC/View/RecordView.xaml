@@ -6,56 +6,47 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:view="using:BlueAid_RC.View"
+    xmlns:chapter="using:BlueAid_RC.View.Chapter" xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)" xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.Background >
+            <SolidColorBrush Color="White"/>
+            <!--<LinearGradientBrush StartPoint="0.1,1.6" EndPoint="0.9,1">
+                <GradientStop Color="#FF28835A" Offset="1" />
+                <GradientStop Color="#FF0F3BFF" Offset="0" />
+            </LinearGradientBrush>-->
+        </Grid.Background>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.5*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Vertical">
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="10"
-                   AutomationProperties.HeadingLevel="Level1" 
-                   FontSize="30"
-                   Text="환자 이름 : "/>
-                <TextBlock Margin="10"
-                   AutomationProperties.HeadingLevel="Level1" 
-                   FontSize="30"
-                   Name="txtUserName"
-                   Text="이준희"/>
-            </StackPanel>
-            
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Margin="10"
-                   AutomationProperties.HeadingLevel="Level1" 
-                   FontSize="30"
-                   Text="환자 번호 : "/>
-                <TextBlock Margin="10"
-                   AutomationProperties.HeadingLevel="Level1" 
-                   FontSize="30"
-                   Name="txtUserNumber"
-                   Text="123456"/>
-            </StackPanel>
-        </StackPanel>
-
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.25*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="0.25*"/>
             </Grid.ColumnDefinitions>
-            <Grid Background="AliceBlue"/>
-            <Grid Background="BlueViolet" Grid.Column="1">
-                <TextBlock Text="내용 화면" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid />
+            <Grid Grid.Column="1" CornerRadius="30" Padding="0,40,0,0" >
+                <FlipView x:Name="FlipViewControl" IsHitTestVisible="False">
+                    <FlipView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </FlipView.ItemsPanel>
+                    <chapter:ChapterStart/>
+                    <chapter:Chapter1/>
+                    <chapter:Chapter2/>
+                </FlipView>
             </Grid>
-            <Grid Background="AliceBlue" Grid.Column="2"/>
+            
+            <Grid  Grid.Column="2"/>
         </Grid>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="0.25*"/>
                 <ColumnDefinition Width="*"/>
@@ -65,28 +56,25 @@
             <StackPanel Margin="20" Grid.Column="1"
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
-
-                <!--<Button x:Name="Button2"
-                        Margin="100 0"
-                        Width="80" Height="90">
-                    <StackPanel>
-                        <Image Source="/Images/red.png" Height="52"/>
-                    </StackPanel>
-                </Button>-->
-                <Button Name="VideoButton" Click="VideoButton_Click" IsEnabled="False" Width="80" Height="90">
+                 
+                <Button Name="RecordBtn" Click="VideoButton_Click" IsEnabled="True" Width="84" Height="84" Margin="20" CornerRadius="90" BorderThickness="1.0" HorizontalAlignment="Center">
                     <Grid>
-                        <Ellipse x:Name="StartRecordingIcon" Fill="Red" Width="20" Height="20"/>
-                        <Rectangle x:Name="StopRecordingIcon" Fill="White" Width="20" Height="20" Visibility="Collapsed"/>
+                        <Ellipse x:Name="RecordEnableIcon" Fill="Red" Width="65" Height="65"/>
+                        <Ellipse x:Name="RecordDisEnableIcon" Visibility="Collapsed" Fill="#FF6E6D6D" Width="65" Height="65"/>
                     </Grid>
                 </Button>
-                <!--<Button x:Name="Button1"
-                        Margin="100 0"
-                        >
-                    <StackPanel>
-                        <Image Source="/Images/blue.png" Height="52"/>
-                    </StackPanel>
-                </Button>-->
-                
+                <Button Name="StopBtn" Click="StopBtn_Click" IsEnabled="False" Width="84" Height="84" Margin="20" CornerRadius="90" BorderThickness="1.0" HorizontalAlignment="Center">
+                    <Grid>
+                        <Ellipse x:Name="RecordStopEnableIcon" Fill="Blue" Width="65" Height="65"/>
+                        <Ellipse x:Name="RecordStopDisEnableIcon" Visibility="Collapsed" Fill="#FF6E6D6D" Width="65" Height="65"/>
+                    </Grid>
+                </Button>
+
+                <Button Click="Button_Click" Width="80" Height="90" Margin="20" Windows10version1809:CornerRadius="20">
+                    <TextBlock Text="다음" FontSize="24" FontWeight="Bold"/>
+                </Button>
+
+                <Button Click="Home_Click" Content="처음으로" Width="80" Height="90" Margin="20" CornerRadius="20"/>
             </StackPanel>
 
             <CaptureElement Grid.Column="2" Name="PreviewControl" Stretch="Fill"/>
