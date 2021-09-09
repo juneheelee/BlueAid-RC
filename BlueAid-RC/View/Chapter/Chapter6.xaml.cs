@@ -21,27 +21,20 @@ using Windows.UI.Xaml.Navigation;
 // 신문사설
 namespace BlueAid_RC.View.Chapter
 {
-    public sealed partial class Chapter6 : UserControl, IMediaControl
+    public sealed partial class Chapter6 : UserControl, IChaperControl
     {
-        private MediaPlayer mediaPlayer;
+        private AudioPlayHandler audioPlayHandler;
 
         public Chapter6()
         {
             this.InitializeComponent();
 
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
-            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Q4.mp3"));
+            audioPlayHandler = new AudioPlayHandler();
         }
-        private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
-        {
-            Debug.WriteLine("chapter6 end");
-        }
-
+        
         public void Start()
         {
-            System.Threading.Thread.Sleep(1000);
-            mediaPlayer.Play();
+            audioPlayHandler.Start("ms-appx:///Assets/Q4.mp3");
         }
 
         public void Dispose()

@@ -125,8 +125,9 @@
     <Compile Include="Model\CameraRotationHelper.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\AudioHandler.cs" />
-    <Compile Include="Util\IMediaControl.cs" />
+    <Compile Include="Util\AudioPlayHandler.cs" />
+    <Compile Include="Util\AudioRecordingHandler.cs" />
+    <Compile Include="Util\IChaperControl.cs" />
     <Compile Include="View\Chapter\Chapter1.xaml.cs">
       <DependentUpon>Chapter1.xaml</DependentUpon>
     </Compile>
@@ -144,9 +145,6 @@
     </Compile>
     <Compile Include="View\Chapter\Chapter6.xaml.cs">
       <DependentUpon>Chapter6.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Chapter\ChapterStart.xaml.cs">
-      <DependentUpon>ChapterStart.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginCheckDialog.xaml.cs">
       <DependentUpon>LoginCheckDialog.xaml</DependentUpon>
@@ -166,6 +164,12 @@
     <Compile Include="View\RecordView.xaml.cs">
       <DependentUpon>RecordView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\StartAndView\EndPage.xaml.cs">
+      <DependentUpon>EndPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StartAndView\StartPage.xaml.cs">
+      <DependentUpon>StartPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">
@@ -176,7 +180,7 @@
     <Content Include="Assets\Q3.mp3" />
     <Content Include="Assets\Q4.mp3" />
     <Content Include="Assets\Q5.mp3" />
-    <Content Include="Assets\SplashScreen1.png" />
+    <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\test.mp4" />
     <Content Include="Images\blue.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -190,7 +194,6 @@
     </Content>
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
-    <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.scale-200.png" />
     <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
@@ -230,10 +233,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Chapter\ChapterStart.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\LoginCheckDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -255,6 +254,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\RecordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StartAndView\EndPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StartAndView\StartPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

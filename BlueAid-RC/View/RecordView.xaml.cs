@@ -1,5 +1,6 @@
 ﻿using BlueAid_RC.Model;
 using BlueAid_RC.Util;
+using BlueAid_RC.View.StartAndView;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -64,12 +65,12 @@ namespace BlueAid_RC.View
         private bool _externalCamera;
 
         private readonly string videoPath = "video";
-        private readonly string audioPath = "audio";
 
         private string userName = string.Empty;
         private string userNumber = string.Empty;
 
-        private AudioHandler _audioHandler;
+        private AudioRecordingHandler _audioHandler;
+        private AudioPlayHandler _audioPlayHandler;
 
         public RecordView()
         {
@@ -77,7 +78,8 @@ namespace BlueAid_RC.View
 
             NavigationCacheMode = NavigationCacheMode.Disabled;
 
-            _audioHandler = new AudioHandler();
+            _audioHandler = new AudioRecordingHandler();
+            _audioPlayHandler = new AudioPlayHandler();
         }
         private async Task Refresh()
         {
@@ -127,6 +129,8 @@ namespace BlueAid_RC.View
             userNumber = user.userNumber;
 
             await Refresh();
+
+            (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).Start();
         }
 
         protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -138,6 +142,8 @@ namespace BlueAid_RC.View
 
             _isActivePage = false;
             await SetUpBasedOnStateAsync();
+
+            (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl)?.Dispose();
         }
 
 
@@ -146,34 +152,6 @@ namespace BlueAid_RC.View
         {
             await SetUpBasedOnStateAsync();
         }
-
-        /// <summary>
-        /// In the event of the app being minimized this method handles media property change events. If the app receives a mute
-        /// notification, it is no longer in the foregroud.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="args"></param>
-        //private async void SystemMediaControls_PropertyChanged(SystemMediaTransportControls sender, SystemMediaTransportControlsPropertyChangedEventArgs args)
-        //{
-        //    await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, async () =>
-        //    {
-        //        // Only handle this event if this page is currently being displayed
-        //        if (args.Property == SystemMediaTransportControlsProperty.SoundLevel && Frame.CurrentSourcePageType == typeof(MainPage))
-        //        {
-        //            // Check to see if the app is being muted. If so, it is being minimized.
-        //            // Otherwise if it is not initialized, it is being brought into focus.
-        //            if (sender.SoundLevel == SoundLevel.Muted)
-        //            {
-        //                await CleanupCameraAsync();
-        //            }
-        //            else if (!_isInitialized)
-        //            {
-        //                await InitializeCameraAsync();
-        //                await _audioHandler?.InitializeAudioAsync();
-        //            }
-        //        }
-        //    });
-        //}
 
         private async void VideoButton_Click(object sender, RoutedEventArgs e)
         {
@@ -195,6 +173,10 @@ namespace BlueAid_RC.View
             }
 
             UpdateCaptureControls();
+
+            _audioPlayHandler.Start("ms-appx:///Assets/Q4.mp3");
+            NextBtn.IsEnabled = true;
+
         }
 
         private async void MediaCapture_RecordLimitationExceeded(MediaCapture sender)
@@ -333,13 +315,13 @@ namespace BlueAid_RC.View
             {
                 // Create storage file for the capture
                 var userPath = userName + "_" + userNumber;
-                var captureFileName = $"chapter{FlipViewControl.SelectedIndex}.mp4";
+                var captureFileName = $"chapter{FlipViewControl.SelectedIndex + 1}.mp4";
                 var captureFullPath = Path.Combine(videoPath, userPath, captureFileName);
                 var videoFile = await _captureFolder.CreateFileAsync(captureFullPath, CreationCollisionOption.ReplaceExisting);
 
                 var encodingProfile = MediaEncodingProfile.CreateMp4(VideoEncodingQuality.Auto);
 
-                var audioFileName = "SimpleAudio.wav";
+                var audioFileName = $"chapter{FlipViewControl.SelectedIndex + 1}.wav";
                 await _audioHandler?.SetAudioSavePath(Path.Combine(userPath, audioFileName));
 
                 Debug.WriteLine("Starting recording to " + videoFile.Path);
@@ -489,18 +471,13 @@ namespace BlueAid_RC.View
         private void UpdateCaptureControls()
         {
             // The buttons should only be enabled if the preview started sucessfully
-            //RecordBtn.IsEnabled = _isPreviewing;
             RecordBtn.IsEnabled = !_isRecording;
             RecordEnableIcon.Visibility = _isRecording ? Visibility.Collapsed : Visibility.Visible;
             RecordDisEnableIcon.Visibility = _isRecording ? Visibility.Visible : Visibility.Collapsed;
 
             StopBtn.IsEnabled = _isRecording;
-
             RecordStopEnableIcon.Visibility = _isRecording ? Visibility.Visible : Visibility.Collapsed;
             RecordStopDisEnableIcon.Visibility = _isRecording ? Visibility.Collapsed : Visibility.Visible;
-
-            //StartRecordingIcon.Visibility = _isRecording ? Visibility.Collapsed : Visibility.Visible;
-            //StopRecordingIcon2.Visibility = _isRecording ? Visibility.Visible : Visibility.Collapsed;
         }
 
         /// <summary>
@@ -520,18 +497,21 @@ namespace BlueAid_RC.View
             return desiredDevice ?? allVideoDevices.FirstOrDefault();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Next_Click(object sender, RoutedEventArgs e)
         {
-            (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IMediaControl)?.Dispose();
+            (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl)?.Dispose();
             if (FlipViewControl.Items.Count -1 > FlipViewControl.SelectedIndex)
             {
                 FlipViewControl.SelectedIndex++;
-                (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IMediaControl).Start();
+                (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).Start();
             }
             else
             {
                 Debug.WriteLine("더이상 페이지가 없습니다.");
+                Frame frame = Window.Current.Content as Frame;
+                frame.Navigate(typeof(EndPage));
             }
+            NextBtn.IsEnabled = false;
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)

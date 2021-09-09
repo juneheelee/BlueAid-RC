@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlueAid_RC.Util
 {
-    interface IMediaControl
+    interface IChaperControl
     {
         void Start();
         void Dispose();

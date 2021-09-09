@@ -39,7 +39,6 @@
                             <VirtualizingStackPanel Orientation="Horizontal"/>
                         </ItemsPanelTemplate>
                     </FlipView.ItemsPanel>
-                    <chapter:ChapterStart/>
                     <chapter:Chapter1/>
                     <chapter:Chapter2/>
                     <chapter:Chapter3/>
@@ -51,8 +50,15 @@
                     <questions:Question3/>
                 </FlipView>
             </Grid>
-            
-            <Grid  Grid.Column="2"/>
+
+            <Grid  Grid.Column="2">
+                <Button Click="Home_Click" 
+                        Content="처음으로" 
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Stretch"
+                        Margin="0" 
+                        CornerRadius="20"/>
+            </Grid>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -79,11 +85,17 @@
                     </Grid>
                 </Button>
 
-                <Button Click="Button_Click" Width="80" Height="90" Margin="20" Windows10version1809:CornerRadius="20">
+                <Button x:Name="NextBtn"
+                        Click="Next_Click" 
+                        IsEnabled="False"
+                        Width="80" 
+                        Height="90" 
+                        Margin="20" 
+                        Windows10version1809:CornerRadius="20">
                     <TextBlock Text="다음" FontSize="24" FontWeight="Bold"/>
                 </Button>
 
-                <Button Click="Home_Click" Content="처음으로" Width="80" Height="90" Margin="20" CornerRadius="20"/>
+               
             </StackPanel>
 
             <CaptureElement Grid.Column="2" Name="PreviewControl" Stretch="Fill"/>

@@ -1,4 +1,5 @@
 ﻿using BlueAid_RC.Model;
+using BlueAid_RC.View.StartAndView;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -33,7 +34,6 @@ namespace BlueAid_RC.View
         {
             User user = new User(txtUsername.Text, txtUserNumber.Text);
             
-
             LoginCheckDialog dialog = new LoginCheckDialog();
             dialog.GetLoginInfo(user);
 
@@ -46,7 +46,7 @@ namespace BlueAid_RC.View
             else if (result == ContentDialogResult.Secondary)
             {
                 Frame frame = Window.Current.Content as Frame;
-                frame.Navigate(typeof(RecordView), user);
+                frame.Navigate(typeof(StartPage), user);
                 Debug.WriteLine("확인");
             }
         }

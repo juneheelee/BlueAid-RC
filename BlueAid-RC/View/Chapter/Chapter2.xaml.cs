@@ -21,9 +21,9 @@ using Windows.UI.Xaml.Navigation;
 
 namespace BlueAid_RC.View.Chapter
 {
-    public sealed partial class Chapter2 : UserControl, IMediaControl
+    public sealed partial class Chapter2 : UserControl, IChaperControl
     {
-        private MediaPlayer mediaPlayer;
+        private AudioPlayHandler audioPlayHandler;
         private MediaPlayer videoPlayer;
         public Chapter2()
         {
@@ -32,16 +32,9 @@ namespace BlueAid_RC.View.Chapter
             Init();
         }
 
-        private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
-        {
-            Debug.WriteLine("chapter2 end");
-        }
-
         public void Init()
         {
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
-            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Q5.mp3"));
+            audioPlayHandler = new AudioPlayHandler();
 
             VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/test.mp4"));
             videoPlayer = VideoPlayerElement.MediaPlayer;
@@ -49,8 +42,7 @@ namespace BlueAid_RC.View.Chapter
 
         public void Start()
         {
-            System.Threading.Thread.Sleep(1000);
-            mediaPlayer.Play();
+            audioPlayHandler.Start("ms-appx:///Assets/Q5.mp3");
             videoPlayer.Play();
             videoPlayer.IsLoopingEnabled = true;
         }
@@ -58,8 +50,6 @@ namespace BlueAid_RC.View.Chapter
         public void Dispose()
         {
             videoPlayer?.Pause();
-            mediaPlayer.MediaEnded -= MediaPlayer_MediaEnded;
-            mediaPlayer?.Dispose();
         }
     }
 }

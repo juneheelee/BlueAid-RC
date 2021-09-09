@@ -18,7 +18,7 @@
                    Text="아~~ 하고 한번 더 최대한 길게 소리 내어 보세요"
                    FontFamily="돋음"
                    TextWrapping="Wrap"
-                   FontSize="60"
+                   FontSize="58"
                    FontWeight="Bold"/>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

@@ -13,7 +13,7 @@ using Windows.Storage.Streams;
 
 namespace BlueAid_RC.Util
 {
-    public class AudioHandler : IDisposable
+    public class AudioRecordingHandler : IDisposable
     {
         private readonly string AUDIO_FILE_PATH = "audio";
 
@@ -22,7 +22,7 @@ namespace BlueAid_RC.Util
         private StorageFile _storageFile;
         public bool IsRecording { get; set; }
 
-        public AudioHandler()
+        public AudioRecordingHandler()
         {
         }
 
