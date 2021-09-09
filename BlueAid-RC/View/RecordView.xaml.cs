@@ -79,6 +79,17 @@ namespace BlueAid_RC.View
 
             _audioHandler = new AudioHandler();
         }
+        private async Task Refresh()
+        {
+            //call your database here...
+            //and update the UI afterwards:
+            await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
+            () =>
+            {
+                // Your UI update code goes here!
+                FlipViewControl.Focus(FocusState.Pointer);
+            });
+        }
         private async void Application_Suspending(object sender, SuspendingEventArgs e)
         {
             _isSuspending = false;
@@ -114,6 +125,8 @@ namespace BlueAid_RC.View
             User user = e.Parameter as User;
             userName = user.userName;
             userNumber = user.userNumber;
+
+            await Refresh();
         }
 
         protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -509,6 +522,7 @@ namespace BlueAid_RC.View
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IMediaControl)?.Dispose();
             if (FlipViewControl.Items.Count -1 > FlipViewControl.SelectedIndex)
             {
                 FlipViewControl.SelectedIndex++;
@@ -520,7 +534,7 @@ namespace BlueAid_RC.View
             }
         }
 
-        private async void Home_Click(object sender, RoutedEventArgs e)
+        private void Home_Click(object sender, RoutedEventArgs e)
         {
             Frame frame = Window.Current.Content as Frame;
             frame.Navigate(typeof(MainPage));

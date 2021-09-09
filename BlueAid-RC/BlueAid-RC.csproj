@@ -133,6 +133,18 @@
     <Compile Include="View\Chapter\Chapter2.xaml.cs">
       <DependentUpon>Chapter2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Chapter\Chapter3.xaml.cs">
+      <DependentUpon>Chapter3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Chapter\Chapter4.xaml.cs">
+      <DependentUpon>Chapter4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Chapter\Chapter5.xaml.cs">
+      <DependentUpon>Chapter5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Chapter\Chapter6.xaml.cs">
+      <DependentUpon>Chapter6.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Chapter\ChapterStart.xaml.cs">
       <DependentUpon>ChapterStart.xaml</DependentUpon>
     </Compile>
@@ -141,6 +153,15 @@
     </Compile>
     <Compile Include="View\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Questions\Question1.xaml.cs">
+      <DependentUpon>Question1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Questions\Question2.xaml.cs">
+      <DependentUpon>Question2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Questions\Question3.xaml.cs">
+      <DependentUpon>Question3.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RecordView.xaml.cs">
       <DependentUpon>RecordView.xaml</DependentUpon>
@@ -153,7 +174,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Q3.mp3" />
+    <Content Include="Assets\Q4.mp3" />
     <Content Include="Assets\Q5.mp3" />
+    <Content Include="Assets\SplashScreen1.png" />
+    <Content Include="Assets\test.mp4" />
     <Content Include="Images\blue.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -190,6 +214,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\Chapter\Chapter3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Chapter\Chapter4.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Chapter\Chapter5.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Chapter\Chapter6.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\Chapter\ChapterStart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +239,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\LoginPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Questions\Question1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Questions\Question2.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Questions\Question3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

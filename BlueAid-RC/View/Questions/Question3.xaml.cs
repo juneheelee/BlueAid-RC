@@ -19,48 +19,33 @@ using Windows.UI.Xaml.Navigation;
 
 // 사용자 정의 컨트롤 항목 템플릿에 대한 설명은 https://go.microsoft.com/fwlink/?LinkId=234236에 나와 있습니다.
 
-namespace BlueAid_RC.View.Chapter
+namespace BlueAid_RC.View.Questions
 {
-    public sealed partial class Chapter1 : UserControl, IMediaControl
+    public sealed partial class Question3 : UserControl, IMediaControl
     {
         private MediaPlayer mediaPlayer;
-        private MediaPlayer videoPlayer;
-
-        public Chapter1()
+        public Question3()
         {
             this.InitializeComponent();
 
-            Init();
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
+            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Q4.mp3"));
         }
 
         private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
         {
-            Debug.WriteLine("test");
-        }
-
-        public void Init()
-        {
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
-            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Q3.mp3"));
-
-            VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/test.mp4"));
-            videoPlayer = VideoPlayerElement.MediaPlayer;
+            Debug.WriteLine("chapter4 end");
         }
 
         public void Start()
         {
             System.Threading.Thread.Sleep(1000);
             mediaPlayer.Play();
-            videoPlayer.Play();
-            videoPlayer.IsLoopingEnabled = true;
         }
 
         public void Dispose()
         {
-            videoPlayer?.Pause();
-            mediaPlayer.MediaEnded -= MediaPlayer_MediaEnded;
-            mediaPlayer?.Dispose();
         }
     }
 }

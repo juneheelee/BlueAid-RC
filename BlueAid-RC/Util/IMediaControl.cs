@@ -9,5 +9,6 @@ namespace BlueAid_RC.Util
     interface IMediaControl
     {
         void Start();
+        void Dispose();
     }
 }

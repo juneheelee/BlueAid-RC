@@ -6,7 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:view="using:BlueAid_RC.View"
-    xmlns:chapter="using:BlueAid_RC.View.Chapter" xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)" xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
+    xmlns:chapter="using:BlueAid_RC.View.Chapter" 
+    xmlns:questions="using:BlueAid_RC.View.Questions"
+    xmlns:Windows10version1903="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 8)" xmlns:Windows10version1809="http://schemas.microsoft.com/winfx/2006/xaml/presentation?IsApiContractPresent(Windows.Foundation.UniversalApiContract, 7)"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -40,6 +42,13 @@
                     <chapter:ChapterStart/>
                     <chapter:Chapter1/>
                     <chapter:Chapter2/>
+                    <chapter:Chapter3/>
+                    <chapter:Chapter4/>
+                    <chapter:Chapter5/>
+                    <chapter:Chapter6/>
+                    <questions:Question1/>
+                    <questions:Question2/>
+                    <questions:Question3/>
                 </FlipView>
             </Grid>
             

@@ -24,13 +24,12 @@ namespace BlueAid_RC.View.Chapter
     public sealed partial class Chapter2 : UserControl, IMediaControl
     {
         private MediaPlayer mediaPlayer;
+        private MediaPlayer videoPlayer;
         public Chapter2()
         {
             this.InitializeComponent();
 
-            mediaPlayer = new MediaPlayer();
-            mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
-            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Q5.mp3"));
+            Init();
         }
 
         private void MediaPlayer_MediaEnded(MediaPlayer sender, object args)
@@ -40,13 +39,27 @@ namespace BlueAid_RC.View.Chapter
 
         public void Init()
         {
+            mediaPlayer = new MediaPlayer();
+            mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
+            mediaPlayer.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/Q5.mp3"));
 
+            VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/test.mp4"));
+            videoPlayer = VideoPlayerElement.MediaPlayer;
         }
 
         public void Start()
         {
             System.Threading.Thread.Sleep(1000);
             mediaPlayer.Play();
+            videoPlayer.Play();
+            videoPlayer.IsLoopingEnabled = true;
+        }
+
+        public void Dispose()
+        {
+            videoPlayer?.Pause();
+            mediaPlayer.MediaEnded -= MediaPlayer_MediaEnded;
+            mediaPlayer?.Dispose();
         }
     }
 }
