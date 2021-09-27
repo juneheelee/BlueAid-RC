@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="BlueAid_RC.View.Chapter.Chapter1"
+    x:Class="BlueAid_RC.View.Chapter.EPP"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:BlueAid_RC.View.Chapter"
@@ -19,11 +19,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Text="아~~ 하고 최대한 길게 소리 내어 보세요"
+                   Text="'이피피'를 영상과 같이 6번 소리 내어 보세요"
                    FontFamily="돋음"
                    FontSize="60"
                    FontWeight="Bold"/>
-        
+
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -32,6 +32,6 @@
             </Grid.ColumnDefinitions>
             <MediaPlayerElement x:Name="VideoPlayerElement" AreTransportControlsEnabled="False" HorizontalAlignment="Stretch" Grid.Column="1"/>
         </Grid>
-        
+
     </Grid>
 </UserControl>

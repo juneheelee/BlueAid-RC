@@ -1,7 +1,6 @@
 ﻿using BlueAid_RC.Util;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -21,15 +20,14 @@ using Windows.UI.Xaml.Navigation;
 
 namespace BlueAid_RC.View.Chapter
 {
-    public sealed partial class Chapter1 : UserControl, IChaperControl
+    public sealed partial class EPP : UserControl, IChaperControl
     {
         private AudioPlayHandler audioPlayHandler;
         private MediaPlayer videoPlayer;
 
-        public Chapter1()
+        public EPP()
         {
             this.InitializeComponent();
-
             Init();
         }
 
@@ -49,7 +47,7 @@ namespace BlueAid_RC.View.Chapter
 
         public void Start()
         {
-            audioPlayHandler.Start("ms-appx:///Assets/Q3.mp3");
+            audioPlayHandler.Start("ms-appx:///Assets/epp.mp3");
         }
 
         public void Dispose()

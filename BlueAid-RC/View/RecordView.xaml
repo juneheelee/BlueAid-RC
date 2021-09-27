@@ -41,6 +41,7 @@
                     </FlipView.ItemsPanel>
                     <chapter:Chapter1/>
                     <chapter:Chapter2/>
+                    <chapter:EPP/>
                     <chapter:Chapter3/>
                     <chapter:Chapter4/>
                     <chapter:Chapter5/>

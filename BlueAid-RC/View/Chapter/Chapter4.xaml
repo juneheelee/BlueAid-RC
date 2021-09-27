@@ -15,7 +15,7 @@
                    FontFamily="돋음"
                    FontSize="60"
                    FontWeight="Bold"
-                   Text="다음 그림에서 보이는 것 4가지를 말씀해 주세요"/>
+                   Text="다음 그림에서 보이는 것 3가지를 말씀해 주세요"/>
             <Grid HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="600"/>

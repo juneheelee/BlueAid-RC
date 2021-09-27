@@ -35,21 +35,30 @@ namespace BlueAid_RC.View.Chapter
         public void Init()
         {
             audioPlayHandler = new AudioPlayHandler();
-
+            audioPlayHandler.audioPlayEndedEvent += AudioPlayHandler_audioPlayEndedEvent;
             VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/test.mp4"));
             videoPlayer = VideoPlayerElement.MediaPlayer;
+        }
+
+        private void AudioPlayHandler_audioPlayEndedEvent(bool obj)
+        {
+            videoPlayer.Play();
+            videoPlayer.IsLoopingEnabled = false;
         }
 
         public void Start()
         {
             audioPlayHandler.Start("ms-appx:///Assets/Q5.mp3");
-            videoPlayer.Play();
-            videoPlayer.IsLoopingEnabled = true;
         }
 
         public void Dispose()
         {
             videoPlayer?.Pause();
+            if (audioPlayHandler != null)
+            {
+                audioPlayHandler.audioPlayEndedEvent -= AudioPlayHandler_audioPlayEndedEvent;
+                audioPlayHandler.Dispose();
+            }
         }
     }
 }
