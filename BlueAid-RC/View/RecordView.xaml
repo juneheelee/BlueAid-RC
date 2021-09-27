@@ -32,7 +32,7 @@
                 <ColumnDefinition Width="0.25*"/>
             </Grid.ColumnDefinitions>
             <Grid />
-            <Grid Grid.Column="1" CornerRadius="30" Padding="0,40,0,0" >
+            <Viewbox Grid.Column="1">
                 <FlipView x:Name="FlipViewControl" IsHitTestVisible="False">
                     <FlipView.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -49,7 +49,7 @@
                     <questions:Question2/>
                     <questions:Question3/>
                 </FlipView>
-            </Grid>
+            </Viewbox>
 
             <Grid  Grid.Column="2">
                 <Button Click="Home_Click" 
