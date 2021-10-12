@@ -80,7 +80,9 @@ namespace BlueAid_RC.View
 
             _audioHandler = new AudioRecordingHandler();
             _audioPlayHandler = new AudioPlayHandler();
+            _audioPlayHandler.audioPlayEndedEvent += _audioPlayHandler_audioPlayEndedEvent;
         }
+
         private async Task Refresh()
         {
             //call your database here...
@@ -171,12 +173,17 @@ namespace BlueAid_RC.View
                 await StopRecordingAsync();
                 await _audioHandler?.StopAudioRecording();
             }
-
-            UpdateCaptureControls();
-
+            //UpdateCaptureControls();
+            StopBtn.IsEnabled = false;
             _audioPlayHandler.Start("ms-appx:///Assets/good.mp3");
-            NextBtn.IsEnabled = true;
+        }
 
+        private async void _audioPlayHandler_audioPlayEndedEvent(bool obj)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                UpdateCaptureControls();
+                NextBtn.IsEnabled = true;
+            }); 
         }
 
         private async void MediaCapture_RecordLimitationExceeded(MediaCapture sender)

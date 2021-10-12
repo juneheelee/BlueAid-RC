@@ -68,14 +68,17 @@ namespace BlueAid_RC.View
         {
             if (String.IsNullOrEmpty(user.userName) || String.IsNullOrWhiteSpace(user.userName))
             {
-                ErrorMessage.Text = "환자이름을 입력해주세요.";
-                ErrorMessage.Visibility = Visibility.Visible;
+                ShowErrorMessage("환자이름을 입력해주세요.", Visibility.Visible);
                 return true;
             }
             else if (String.IsNullOrEmpty(user.userNumber) || String.IsNullOrWhiteSpace(user.userNumber))
             {
-                ErrorMessage.Text = "환자 번호를 입력해주세요.";
-                ErrorMessage.Visibility = Visibility.Visible;
+                ShowErrorMessage("환자 번호를 입력해주세요.", Visibility.Visible);
+                return true;
+            }
+            else if (".".Equals(user.userName) || ".".Equals(user.userNumber))
+            {
+                ShowErrorMessage("잘못된 형식입니다.", Visibility.Visible);
                 return true;
             }
 
@@ -87,10 +90,15 @@ namespace BlueAid_RC.View
             bool result = await FileStorageUtils.GetInstance.ExistUserFile(user);
             if (result)
             {
-                ErrorMessage.Text = "중복된 사용자 정보입니다.";
-                ErrorMessage.Visibility = Visibility.Visible;
+                ShowErrorMessage("중복된 환자 정보입니다.", Visibility.Visible);
             }
             return result;
+        }
+
+        private void ShowErrorMessage(string message, Visibility visibility)
+        {
+            ErrorMessage.Text = message;
+            ErrorMessage.Visibility = visibility;
         }
     }
 }
