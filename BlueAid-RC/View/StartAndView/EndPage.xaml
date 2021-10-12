@@ -18,12 +18,31 @@
                     FontWeight="Bold"
                     Text="감사합니다"/>
 
-            <Button Content="끝내기"
+            <Button 
                     Width="200"
                     Height="100"
                     HorizontalAlignment="Center" VerticalAlignment="Center"
-                    Click="Button_Click"/>
-            
+                 BorderBrush="Transparent"
+                        Foreground="White"  
+                        Background="#FFF95B11"
+                    Click="Button_Click"
+                CornerRadius="20">
+                <Button.Resources>
+                    <ResourceDictionary>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Dark">
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#FF449CD9"/>
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#FF449CD9"/>
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+                </Button.Resources>
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="끝내기" FontSize="24" FontWeight="Bold"/>
+            </Button>
         </StackPanel>
         
     </Grid>

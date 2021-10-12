@@ -92,11 +92,26 @@
                         Width="80" 
                         Height="90" 
                         Margin="20" 
+                        BorderBrush="Transparent"
+                        Foreground="White"  
+                        Background="#FFF95B11"
                         Windows10version1809:CornerRadius="20">
-                    <TextBlock Text="다음" FontSize="24" FontWeight="Bold"/>
+                    <Button.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.ThemeDictionaries>
+                                <ResourceDictionary x:Key="Dark">
+                                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#FF449CD9"/>
+                                </ResourceDictionary>
+                                <ResourceDictionary x:Key="Light">
+                                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#FF449CD9"/>
+                                </ResourceDictionary>
+                            </ResourceDictionary.ThemeDictionaries>
+                        </ResourceDictionary>
+                    </Button.Resources>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="다음" FontSize="24" FontWeight="Bold"/>
                 </Button>
-
-               
             </StackPanel>
 
             <CaptureElement Grid.Column="2" Name="PreviewControl" Stretch="Fill"/>

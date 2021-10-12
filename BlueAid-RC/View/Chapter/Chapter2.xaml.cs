@@ -48,7 +48,7 @@ namespace BlueAid_RC.View.Chapter
 
         public void Start()
         {
-            audioPlayHandler.Start("ms-appx:///Assets/Q5.mp3");
+            audioPlayHandler.Start("ms-appx:///Assets/Q2.mp3");
         }
 
         public void Dispose()

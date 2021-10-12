@@ -6,7 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="1000"
+    d:DesignHeight="1080"
     d:DesignWidth="1920">
 
     <Grid Background="White">
@@ -14,100 +14,93 @@
             <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"
                         Margin="0,0,0,50"
                         FontFamily="돋음"
-                        FontSize="50"
+                        FontSize="70"
                         FontWeight="Bold"
                         Text="다음 시나리오를 읽어 주세요"/>
 
             <TextBlock  Margin="0,0,0,30"
                         FontFamily="돋음"
-                        FontSize="30"
+                        FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
                         Text="(영조는 사도세자가 있던 뒷 뜰로 나와 사도 세자가 입고 있던 옷을 다 찢어 버리고 그 안에 하안 상복을 입을 것을 보고 화가 머리 끝까지 올라와 더 이상 참을 수 없는 표정을 하고 사도세자 앞에 자결하라며 칼을 내던진다)"/>
 
             <TextBlock  Margin="0,0,0,10"
                         FontFamily="돋음"
-                        FontSize="30"
+                        FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
                         Text="사도세자 : 저는 잘못한 것이 없습니다."/>
 
-            <TextBlock  Margin="0,0,0,10"
+            <TextBlock  Margin="0,0,0,40"
                         FontFamily="돋음"
-                        FontSize="30"
+                        FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
-                        Text="영조 : 네가 이 애비를 죽이려고 미리 상복까지 입었구나"/>
+                        Text="영조 : 네가 이 애비를 죽이려고 미리 상복까지 입었구나!"/>
 
             <TextBlock  Margin="0,0,0,10"
                         FontFamily="돋음"
-                        FontSize="30"
+                        FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
                         Text="사도세자 : 대비마마와 중전마마 초상때부터 입어온 상복입니다."/>
 
-            <TextBlock  Margin="0,0,0,10"
+            <TextBlock  Margin="0,0,0,40"
                         FontFamily="돋음"
-                        FontSize="30"
+                        FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
                         Text="영조 : 이것은 다 무엇이냐?! 니가 궁궐 후원에 무덤 파고 관 짜고 상복 입고, 날 저주하며 죽이려고 한 것 아니냐?!"/>
 
             <TextBlock  Margin="0,0,0,10"
                         FontFamily="돋음"
-                        FontSize="30"
+                        FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
                         Text="사도세자 : 전하께서 저를 죽은 사람 취급하기에 제가 제 무덤을 판 것입니다."/>
 
-            <TextBlock  Margin="0,0,0,10"
+            <TextBlock  Margin="0,0,0,40"
                         FontFamily="돋음"
-                        FontSize="30"
+                        FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
                         Text="영조 : 당장 저놈을 뒤주에 가두어라! 내가 죽으면 나라가 망하지, 니가 죽으면 300년 종사는 보전할 수 있다."/>
 
-            <TextBlock  Margin="0,0,0,10"
+            <TextBlock  Margin="0,0,0,40"
                         FontFamily="돋음"
-                        FontSize="30"
+                        FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
                         Text="(사도세자는 뒤주에 갇히고 뚜껑에 영조가 쇠못을 박고 있다)"/>
 
             <TextBlock  Margin="0,0,0,10"
                         FontFamily="돋음"
-                        FontSize="30"
+                        FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
                         Text="세손 : 할바마마, 아비를 살려주소서 ! 소손이 이렇게 빕니다."/>
 
-            <TextBlock  Margin="0,0,0,10"
+            <TextBlock  Margin="0,0,0,40"
                         FontFamily="돋음"
-                        FontSize="30"
+                        FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
                         Text="영조 : 아무도 들이지 말라 하지 않았더냐! 세손까지 뒤주 안에 들어가길 바라느냐?!"/>
 
             <TextBlock  Margin="0,0,0,10"
                         FontFamily="돋음"
-                        FontSize="30"
+                        FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
                         Text="세손 : 아비가 못하는 일은 제가 다 하겠습니다. 글을 읽으라면 아비 대신 제가 읽고, 뭐든지 할바마마가 시키는 대로 다 하겠습니다! 아비를 살려주소서! 아버지~~~ 아버지~~ 빨리 나오소서!"/>
 
-            <TextBlock  Margin="0,0,0,10"
+            <TextBlock  Margin="0,0,0,40"
                         FontFamily="돋음"
-                        FontSize="30"
+                        FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
                         Text="영조 : 세손은 조용히 물러가라. 한번 만 더 나서면 그땐 세손도 화를 면치 못할 것이다"/>
-
-            <TextBlock  Margin="0,20,0,0"
-                        FontFamily="돋음"
-                        FontSize="30"
-                        FontWeight="Bold"
-                        TextWrapping="Wrap"
-                        Text=" (시녀들이 와서 안고 나감)"/>
         </StackPanel>
         
     </Grid>

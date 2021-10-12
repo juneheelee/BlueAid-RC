@@ -146,6 +146,9 @@
     <Compile Include="View\Chapter\Chapter6.xaml.cs">
       <DependentUpon>Chapter6.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\Chapter\EPP.xaml.cs">
+      <DependentUpon>EPP.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\LoginCheckDialog.xaml.cs">
       <DependentUpon>LoginCheckDialog.xaml</DependentUpon>
     </Compile>
@@ -177,9 +180,14 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\epp.mp3" />
+    <Content Include="Assets\good.mp3" />
+    <Content Include="Assets\Q1.mp3" />
     <Content Include="Assets\Q3.mp3" />
     <Content Include="Assets\Q4.mp3" />
+    <Content Include="Assets\Q2.mp3" />
     <Content Include="Assets\Q5.mp3" />
+    <Content Include="Assets\Q6.mp3" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\test.mp4" />
     <Content Include="Images\blue.png">
@@ -234,6 +242,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Chapter\Chapter6.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Chapter\EPP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

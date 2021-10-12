@@ -81,12 +81,14 @@
                         <TextBox x:Name="txtUserNumber" PlaceholderText="환자번호" Margin="10 0"  Foreground="White" Width="230" BorderBrush="White" />
                     </StackPanel>
                     <StackPanel Margin="10" HorizontalAlignment="Center">
+
                         <Button Width="100" Height="40"
-                         BorderThickness="2" BorderBrush="#FF449CD9"
-                         Background="#FF449CD9" Foreground="White"  
+                                BorderThickness="2" BorderBrush="#FF449CD9"
+                                Background="#FF449CD9" Foreground="White"  
                                 x:Name="btnLogin" 
                                 Click="btnLogin_Click" 
-                                Content="시작">
+                                Content="시작"
+                                CornerRadius="10">
                         </Button>
                     </StackPanel>
                 </StackPanel>

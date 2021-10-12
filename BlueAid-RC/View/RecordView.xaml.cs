@@ -174,7 +174,7 @@ namespace BlueAid_RC.View
 
             UpdateCaptureControls();
 
-            _audioPlayHandler.Start("ms-appx:///Assets/Q4.mp3");
+            _audioPlayHandler.Start("ms-appx:///Assets/good.mp3");
             NextBtn.IsEnabled = true;
 
         }

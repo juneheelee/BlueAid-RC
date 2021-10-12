@@ -25,11 +25,30 @@
                Stretch="Uniform"/>
 
         <Button Grid.Row="1" Grid.Column="1" 
-                Content="시작"
                 Width="200"
                 Height="100"
                 Click="Button_Click"
+                BorderBrush="Transparent"
                 HorizontalAlignment="Center"
-                VerticalAlignment="Center"/>
+                VerticalAlignment="Center"
+                Foreground="White"  
+                Background="#FFF95B11"
+                CornerRadius="20">
+            <Button.Resources>
+                <ResourceDictionary>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Dark">
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#FF449CD9"/>
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
+                            <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#FF449CD9"/>
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+            </Button.Resources>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="시작" FontSize="40"/>
+        </Button>
     </Grid>
 </Page>
