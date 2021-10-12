@@ -6,6 +6,8 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Media.Core;
+using Windows.Media.Playback;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -24,6 +26,8 @@ namespace BlueAid_RC.View.StartAndView
     public sealed partial class StartPage : Page
     {
         private User userInfo;
+
+        private MediaPlayer videoPlayer;
         public StartPage()
         {
             this.InitializeComponent();
@@ -31,12 +35,23 @@ namespace BlueAid_RC.View.StartAndView
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            Dispose();
             Frame frame = Window.Current.Content as Frame;
             frame.Navigate(typeof(RecordView), userInfo);
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             userInfo = e.Parameter as User;
+
+            VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/intro.mp4"));
+            videoPlayer = VideoPlayerElement.MediaPlayer;
+            videoPlayer.Play();
+            videoPlayer.IsLoopingEnabled = false;
+        }
+
+        public void Dispose()
+        {
+            videoPlayer?.Pause();
         }
     }
 }

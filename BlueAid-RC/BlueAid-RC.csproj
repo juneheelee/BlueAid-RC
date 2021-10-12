@@ -182,6 +182,7 @@
   <ItemGroup>
     <Content Include="Assets\epp.mp3" />
     <Content Include="Assets\good.mp3" />
+    <Content Include="Assets\intro.mp4" />
     <Content Include="Assets\Q1.mp3" />
     <Content Include="Assets\Q3.mp3" />
     <Content Include="Assets\Q4.mp3" />
