@@ -127,6 +127,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\AudioPlayHandler.cs" />
     <Compile Include="Util\AudioRecordingHandler.cs" />
+    <Compile Include="Util\FileStorageUtils.cs" />
     <Compile Include="Util\IChaperControl.cs" />
     <Compile Include="View\Chapter\Chapter1.xaml.cs">
       <DependentUpon>Chapter1.xaml</DependentUpon>

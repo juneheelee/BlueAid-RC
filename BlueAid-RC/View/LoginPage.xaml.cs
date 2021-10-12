@@ -1,4 +1,5 @@
 ﻿using BlueAid_RC.Model;
+using BlueAid_RC.Util;
 using BlueAid_RC.View.StartAndView;
 using System;
 using System.Collections.Generic;
@@ -6,8 +7,10 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Storage;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -28,27 +31,66 @@ namespace BlueAid_RC.View
         public LoginPage()
         {
             this.InitializeComponent();
+            ErrorMessage.Visibility = Visibility.Collapsed;
+            FileStorageUtils.GetInstance.Init();
         }
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            User user = new User(txtUsername.Text, txtUserNumber.Text);
             
-            LoginCheckDialog dialog = new LoginCheckDialog();
-            dialog.GetLoginInfo(user);
+            User user = new User(txtUsername.Text, txtUserNumber.Text);
 
-            ContentDialogResult result = await dialog.ShowAsync();
+            bool isValidate = ValidationInputCheck(user);
 
-            if (result == ContentDialogResult.Primary)
+            bool isDuplicated = await DuplicatedUserInfoCheck(user);
+
+            if (!isDuplicated && !isValidate)
             {
-                Debug.WriteLine("취소");
+                LoginCheckDialog dialog = new LoginCheckDialog();
+                dialog.GetLoginInfo(user);
+
+                ContentDialogResult contentDialogResult = await dialog.ShowAsync();
+
+                if (contentDialogResult == ContentDialogResult.Primary)
+                {
+                    Debug.WriteLine("취소");
+                }
+                else if (contentDialogResult == ContentDialogResult.Secondary)
+                {
+                    Frame frame = Window.Current.Content as Frame;
+                    frame.Navigate(typeof(StartPage), user);
+                    Debug.WriteLine("확인");
+                }
             }
-            else if (result == ContentDialogResult.Secondary)
+        }
+
+        private bool ValidationInputCheck(User user)
+        {
+            if (String.IsNullOrEmpty(user.userName) || String.IsNullOrWhiteSpace(user.userName))
             {
-                Frame frame = Window.Current.Content as Frame;
-                frame.Navigate(typeof(StartPage), user);
-                Debug.WriteLine("확인");
+                ErrorMessage.Text = "환자이름을 입력해주세요.";
+                ErrorMessage.Visibility = Visibility.Visible;
+                return true;
             }
+            else if (String.IsNullOrEmpty(user.userNumber) || String.IsNullOrWhiteSpace(user.userNumber))
+            {
+                ErrorMessage.Text = "환자 번호를 입력해주세요.";
+                ErrorMessage.Visibility = Visibility.Visible;
+                return true;
+            }
+
+            return false;
+        }
+
+        private async Task<bool> DuplicatedUserInfoCheck(User user)
+        {
+            bool result = await FileStorageUtils.GetInstance.ExistUserFile(user);
+            if (result)
+            {
+                ErrorMessage.Text = "중복된 사용자 정보입니다.";
+                ErrorMessage.Visibility = Visibility.Visible;
+            }
+            return result;
         }
     }
 }

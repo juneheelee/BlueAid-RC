@@ -92,6 +92,12 @@
                         </Button>
                     </StackPanel>
                 </StackPanel>
+                <TextBlock Text="환자번호를 입력해주세요." 
+                           x:Name="ErrorMessage"
+                           HorizontalAlignment="Center"
+                           FontSize="13"
+                           FontWeight="Bold"
+                           Foreground="Red"/>
             </StackPanel>
         </StackPanel>
     </Grid>
