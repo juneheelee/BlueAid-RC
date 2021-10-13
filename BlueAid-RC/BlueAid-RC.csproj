@@ -181,6 +181,8 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\chapter1-2.mp4" />
+    <Content Include="Assets\chapter3.mp4" />
     <Content Include="Assets\epp.mp3" />
     <Content Include="Assets\good.mp3" />
     <Content Include="Assets\intro.mp4" />
@@ -190,6 +192,9 @@
     <Content Include="Assets\Q2.mp3" />
     <Content Include="Assets\Q5.mp3" />
     <Content Include="Assets\Q6.mp3" />
+    <Content Include="Assets\Question1.mp3" />
+    <Content Include="Assets\Question2.mp3" />
+    <Content Include="Assets\Question3.mp3" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\test.mp4" />
     <Content Include="Images\blue.png">
@@ -202,6 +207,7 @@
     </Content>
     <Content Include="Assets\ICON4801.png" />
     <Content Include="Assets\lion.jpg" />
+    <Content Include="Images\page_1_graphic.png" />
     <Content Include="Images\red.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

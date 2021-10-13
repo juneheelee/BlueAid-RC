@@ -9,7 +9,7 @@
     d:DesignHeight="300"
     d:DesignWidth="1920">
 
-    <Grid Background="White">
+    <Grid Background="#1a2555">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
@@ -17,6 +17,7 @@
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                    Text="아~~ 하고 한번 더 최대한 길게 소리 내어 보세요"
                    FontFamily="돋음"
+                   Foreground="White"
                    TextWrapping="Wrap"
                    FontSize="58"
                    FontWeight="Bold"/>

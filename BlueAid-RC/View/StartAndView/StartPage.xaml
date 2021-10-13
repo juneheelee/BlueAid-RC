@@ -5,8 +5,7 @@
     xmlns:local="using:BlueAid_RC.View.StartAndView"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d" Background="#1a2555">
 
     <Grid Margin="50">
 
@@ -33,7 +32,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Foreground="White"  
-                Background="#FFF95B11"
+                Background="#90c42a"
                 CornerRadius="20">
             <Button.Resources>
                 <ResourceDictionary>

@@ -33,7 +33,7 @@ namespace BlueAid_RC.View.Questions
 
         public void Start()
         {
-            //audioPlayHandler.Start("ms-appx:///Assets/Q4.mp3");
+            audioPlayHandler.Start("ms-appx:///Assets/Question3.mp3");
         }
 
         public void Dispose()

@@ -9,11 +9,12 @@
     d:DesignHeight="1080"
     d:DesignWidth="1920">
 
-    <Grid Background="White">
+    <Grid Background="#1a2555">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"
                         Margin="0,0,0,50"
                         FontFamily="돋음"
+                        Foreground="White"
                         FontSize="70"
                         FontWeight="Bold"
                         Text="다음 시나리오를 읽어 주세요"/>
@@ -21,6 +22,7 @@
             <TextBlock  Margin="0,0,0,30"
                         FontFamily="돋음"
                         FontSize="35"
+                        Foreground="White"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
                         Text="(영조는 사도세자가 있던 뒷 뜰로 나와 사도 세자가 입고 있던 옷을 다 찢어 버리고 그 안에 하안 상복을 입을 것을 보고 화가 머리 끝까지 올라와 더 이상 참을 수 없는 표정을 하고 사도세자 앞에 자결하라며 칼을 내던진다)"/>
@@ -28,6 +30,7 @@
             <TextBlock  Margin="0,0,0,10"
                         FontFamily="돋음"
                         FontSize="35"
+                        Foreground="White"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
                         Text="사도세자 : 저는 잘못한 것이 없습니다."/>
@@ -35,12 +38,14 @@
             <TextBlock  Margin="0,0,0,40"
                         FontFamily="돋음"
                         FontSize="35"
+                        Foreground="White"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
                         Text="영조 : 네가 이 애비를 죽이려고 미리 상복까지 입었구나!"/>
 
             <TextBlock  Margin="0,0,0,10"
                         FontFamily="돋음"
+                        Foreground="White"
                         FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
@@ -48,6 +53,7 @@
 
             <TextBlock  Margin="0,0,0,40"
                         FontFamily="돋음"
+                        Foreground="White"
                         FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
@@ -55,6 +61,7 @@
 
             <TextBlock  Margin="0,0,0,10"
                         FontFamily="돋음"
+                        Foreground="White"
                         FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
@@ -62,6 +69,7 @@
 
             <TextBlock  Margin="0,0,0,40"
                         FontFamily="돋음"
+                        Foreground="White"
                         FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
@@ -69,6 +77,7 @@
 
             <TextBlock  Margin="0,0,0,40"
                         FontFamily="돋음"
+                        Foreground="White"
                         FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
@@ -76,6 +85,7 @@
 
             <TextBlock  Margin="0,0,0,10"
                         FontFamily="돋음"
+                        Foreground="White"
                         FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
@@ -83,6 +93,7 @@
 
             <TextBlock  Margin="0,0,0,40"
                         FontFamily="돋음"
+                        Foreground="White"
                         FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
@@ -90,6 +101,7 @@
 
             <TextBlock  Margin="0,0,0,10"
                         FontFamily="돋음"
+                        Foreground="White"
                         FontSize="35"
                         FontWeight="Bold"
                         TextWrapping="Wrap"
@@ -99,6 +111,7 @@
                         FontFamily="돋음"
                         FontSize="35"
                         FontWeight="Bold"
+                        Foreground="White"
                         TextWrapping="Wrap"
                         Text="영조 : 세손은 조용히 물러가라. 한번 만 더 나서면 그땐 세손도 화를 면치 못할 것이다"/>
         </StackPanel>

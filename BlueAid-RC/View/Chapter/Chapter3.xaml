@@ -9,9 +9,10 @@
     d:DesignHeight="300"
     d:DesignWidth="1920">
 
-    <Grid Background="White">
+    <Grid Background="#1a2555">
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                    FontFamily="돋음"
+                   Foreground="White"
                    FontSize="60"
                    FontWeight="Bold"
                    Text="305~285 까지 거꾸로 세어 보세요"/>

@@ -36,7 +36,7 @@ namespace BlueAid_RC.View.Chapter
         {
             audioPlayHandler = new AudioPlayHandler();
             audioPlayHandler.audioPlayEndedEvent += AudioPlayHandler_audioPlayEndedEvent;
-            VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/test.mp4"));
+            VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/chapter1-2.mp4"));
             videoPlayer = VideoPlayerElement.MediaPlayer;
         }
 

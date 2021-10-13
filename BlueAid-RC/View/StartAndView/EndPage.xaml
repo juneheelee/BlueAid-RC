@@ -5,15 +5,15 @@
     xmlns:local="using:BlueAid_RC.View.StartAndView"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    mc:Ignorable="d">
 
-    <Grid Background="White">
+    <Grid Background="#1a2555">
         <StackPanel Orientation="Vertical" VerticalAlignment="Center">
             
             <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"
                     Margin="0,0,0,50"
                     FontFamily="돋음"
+                    Foreground="White"
                     FontSize="60"
                     FontWeight="Bold"
                     Text="감사합니다"/>
@@ -24,7 +24,7 @@
                     HorizontalAlignment="Center" VerticalAlignment="Center"
                  BorderBrush="Transparent"
                         Foreground="White"  
-                        Background="#FFF95B11"
+                        Background="#90c42a"
                     Click="Button_Click"
                 CornerRadius="20">
                 <Button.Resources>

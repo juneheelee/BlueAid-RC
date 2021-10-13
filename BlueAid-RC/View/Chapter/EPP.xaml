@@ -11,7 +11,7 @@
 
     <Grid>
         <Grid.Background>
-            <SolidColorBrush Color="White" />
+            <SolidColorBrush Color="#1a2555" />
         </Grid.Background>
 
         <Grid.RowDefinitions>
@@ -21,6 +21,7 @@
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                    Text="'이피피'를 영상과 같이 6번 소리 내어 보세요"
                    FontFamily="돋음"
+                   Foreground="White"
                    FontSize="60"
                    FontWeight="Bold"/>
 

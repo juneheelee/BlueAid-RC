@@ -11,7 +11,7 @@
 
     <Grid>
         <Grid.Background>
-            <SolidColorBrush Color="White" />
+            <SolidColorBrush Color="#1a2555" />
         </Grid.Background>
 
         <Grid.RowDefinitions>
@@ -20,6 +20,7 @@
         </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                    Text="아~~ 하고 최대한 길게 소리 내어 보세요"
+                   Foreground="White"
                    FontFamily="돋음"
                    FontSize="60"
                    FontWeight="Bold"/>

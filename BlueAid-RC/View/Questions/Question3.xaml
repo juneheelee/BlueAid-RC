@@ -9,12 +9,13 @@
    d:DesignHeight="300"
     d:DesignWidth="1920">
 
-    <Grid Background="White">
+    <Grid Background="#1a2555">
         <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"
                         Margin="0,0,0,50"
                         FontFamily="돋음"
+                        Foreground="White"
                         FontSize="50"
                         FontWeight="Bold"
-                        Text="Q.3 질문 내용입니다."/>
+                        Text="Q.3 오늘 병원에는 누구와 함께 오셨나요?"/>
     </Grid>
 </UserControl>

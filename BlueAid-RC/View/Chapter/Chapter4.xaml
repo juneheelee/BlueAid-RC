@@ -9,11 +9,12 @@
     d:DesignHeight="800"
     d:DesignWidth="1920">
 
-    <Grid Background="White">
+    <Grid Background="#1a2555">
         <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                    FontFamily="돋음"
                    FontSize="60"
+                   Foreground="White"
                    FontWeight="Bold"
                    Text="다음 그림에서 보이는 것 3가지를 말씀해 주세요"/>
             <Grid HorizontalAlignment="Center">
@@ -30,8 +31,8 @@
                 <Image Margin="10" Grid.Row="1" Source="ms-appx:///Assets/lion.jpg" Stretch="Fill"/>
                 <Image Margin="10" Grid.Row="1" Grid.Column="1" Source="ms-appx:///Assets/elephant.jpg" Stretch="Fill"/>
             </Grid>
-            
+
         </StackPanel>
-        
+
     </Grid>
 </UserControl>
