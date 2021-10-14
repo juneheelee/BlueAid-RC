@@ -17,8 +17,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+// 사용자 정의 컨트롤 항목 템플릿에 대한 설명은 https://go.microsoft.com/fwlink/?LinkId=234236에 나와 있습니다.
 
-// 시나리오
 namespace BlueAid_RC.View.Chapter
 {
     public sealed partial class Chapter5 : UserControl, IChaperControl
@@ -33,7 +33,7 @@ namespace BlueAid_RC.View.Chapter
 
         public void Start()
         {
-            audioPlayHandler.Start("ms-appx:///Assets/Q5.mp3");
+            audioPlayHandler.Start("ms-appx:///Assets/Q4.mp3");
         }
 
         public void Dispose()

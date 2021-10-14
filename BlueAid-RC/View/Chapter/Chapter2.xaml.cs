@@ -37,17 +37,7 @@ namespace BlueAid_RC.View.Chapter
             if (audioPlayHandler == null)
             {
                 audioPlayHandler = new AudioPlayHandler();
-                audioPlayHandler.audioPlayEndedEvent += AudioPlayHandler_audioPlayEndedEvent;
             }
-                
-            VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/chapter1-2.mp4"));
-            videoPlayer = VideoPlayerElement.MediaPlayer;
-        }
-
-        private void AudioPlayHandler_audioPlayEndedEvent(bool obj)
-        {
-            videoPlayer.Play();
-            videoPlayer.IsLoopingEnabled = false;
         }
 
         public void Start()
@@ -58,13 +48,7 @@ namespace BlueAid_RC.View.Chapter
 
         public void Dispose()
         {
-            videoPlayer?.Pause();
-            if (audioPlayHandler != null)
-            {
-                audioPlayHandler.audioPlayEndedEvent -= AudioPlayHandler_audioPlayEndedEvent;
-                audioPlayHandler.Dispose();
-                audioPlayHandler = null;
-            }
+
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using BlueAid_RC.Util;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -24,21 +23,47 @@ namespace BlueAid_RC.View.Chapter
     public sealed partial class Chapter3 : UserControl, IChaperControl
     {
         private AudioPlayHandler audioPlayHandler;
+        private MediaPlayer videoPlayer;
+
         public Chapter3()
         {
             this.InitializeComponent();
-
-            audioPlayHandler = new AudioPlayHandler();
+            Init();
         }
 
+        public void Init()
+        {
+            if (audioPlayHandler == null)
+            {
+                audioPlayHandler = new AudioPlayHandler();
+                audioPlayHandler.audioPlayEndedEvent += AudioPlayHandler_audioPlayEndedEvent;
+            }
+            
+            VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/chapter3.mp4"));
+            videoPlayer = VideoPlayerElement.MediaPlayer;
+        }
+
+        private void AudioPlayHandler_audioPlayEndedEvent(bool obj)
+        {
+            videoPlayer.Play();
+            videoPlayer.IsLoopingEnabled = false;
+        }
 
         public void Start()
         {
-            audioPlayHandler.Start("ms-appx:///Assets/Q3.mp3");
+            Init();
+            audioPlayHandler.Start("ms-appx:///Assets/epp.mp3");
         }
 
         public void Dispose()
         {
+            videoPlayer?.Pause();
+            if (audioPlayHandler != null)
+            {
+                audioPlayHandler.audioPlayEndedEvent -= AudioPlayHandler_audioPlayEndedEvent;
+                audioPlayHandler.Dispose();
+                audioPlayHandler = null;
+            }
         }
     }
 }

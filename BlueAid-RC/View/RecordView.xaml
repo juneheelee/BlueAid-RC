@@ -41,11 +41,12 @@
                     </FlipView.ItemsPanel>
                     <chapter:Chapter1/>
                     <chapter:Chapter2/>
-                    <chapter:EPP/>
                     <chapter:Chapter3/>
                     <chapter:Chapter4/>
                     <chapter:Chapter5/>
                     <chapter:Chapter6/>
+                    <chapter:Chapter7/>
+                    <chapter:Chapter8/>
                     <questions:Question1/>
                     <questions:Question2/>
                     <questions:Question3/>

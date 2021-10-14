@@ -6,24 +6,15 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="1080"
+    d:DesignHeight="300"
     d:DesignWidth="1920">
 
     <Grid Background="#1a2555">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="0.15*"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
-                   Grid.Row="0"
                    FontFamily="돋음"
-                   FontSize="60"
                    Foreground="White"
+                   FontSize="60"
                    FontWeight="Bold"
-                   Text="다음 그림에서 보이는 것 3가지를 말씀해 주세요"/>
-        <Image Margin="10" 
-               Grid.Row="1"
-               Source="ms-appx:///Assets/picture1.png"  Stretch="Fill"/>
-
+                   Text="305~285 까지 거꾸로 세어 보세요"/>
     </Grid>
 </UserControl>

@@ -135,9 +135,6 @@
     <Compile Include="View\Chapter\Chapter2.xaml.cs">
       <DependentUpon>Chapter2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Chapter\Chapter3.xaml.cs">
-      <DependentUpon>Chapter3.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\Chapter\Chapter4.xaml.cs">
       <DependentUpon>Chapter4.xaml</DependentUpon>
     </Compile>
@@ -147,8 +144,14 @@
     <Compile Include="View\Chapter\Chapter6.xaml.cs">
       <DependentUpon>Chapter6.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Chapter\EPP.xaml.cs">
-      <DependentUpon>EPP.xaml</DependentUpon>
+    <Compile Include="View\Chapter\Chapter7.xaml.cs">
+      <DependentUpon>Chapter7.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Chapter\Chapter8.xaml.cs">
+      <DependentUpon>Chapter8.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Chapter\Chapter3.xaml.cs">
+      <DependentUpon>Chapter3.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\LoginCheckDialog.xaml.cs">
       <DependentUpon>LoginCheckDialog.xaml</DependentUpon>
@@ -247,10 +250,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Chapter\Chapter3.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\Chapter\Chapter4.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -260,10 +259,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\Chapter\Chapter6.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Chapter\Chapter7.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Chapter\Chapter8.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Chapter\EPP.xaml">
+    <Page Include="View\Chapter\Chapter3.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

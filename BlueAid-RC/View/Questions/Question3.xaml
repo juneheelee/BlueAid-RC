@@ -16,6 +16,6 @@
                         Foreground="White"
                         FontSize="70"
                         FontWeight="Bold"
-                        Text="Q.3 오늘 병원에는 누구와 함께 오셨나요?"/>
+                        Text="질문3)  오늘 병원에는 누구와 함께 오셨나요?"/>
     </Grid>
 </UserControl>

@@ -16,6 +16,6 @@
                         Foreground="White"
                         FontSize="70"
                         FontWeight="Bold"
-                        Text="Q.1 환자분 성함이 어떻게 되시나요?"/>
+                        Text="질문1)  환자분 성함이 어떻게 되시나요?"/>
     </Grid>
 </UserControl>
