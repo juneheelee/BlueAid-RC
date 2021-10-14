@@ -186,6 +186,9 @@
     <Content Include="Assets\epp.mp3" />
     <Content Include="Assets\good.mp3" />
     <Content Include="Assets\intro.mp4" />
+    <Content Include="Assets\page_3_button_back.png" />
+    <Content Include="Assets\page_3_button_front.png" />
+    <Content Include="Assets\page_3_button_front.svg" />
     <Content Include="Assets\Q1.mp3" />
     <Content Include="Assets\Q3.mp3" />
     <Content Include="Assets\Q4.mp3" />
@@ -197,6 +200,8 @@
     <Content Include="Assets\Question3.mp3" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\test.mp4" />
+    <Content Include="Assets\test.svg" />
+    <Content Include="Assets\test2.svg" />
     <Content Include="Images\blue.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -72,7 +72,48 @@
             <StackPanel Margin="20" Grid.Column="1"
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
-                 
+
+                <!--<Button Name="PrevBtn" Click="PrevBtn_Click"
+                        IsEnabled="True" Width="84" Height="84" 
+                        Margin="20" CornerRadius="90" BorderThickness="1.0" 
+                        HorizontalAlignment="Stretch">
+                    <Image Stretch="UniformToFill">
+                        <Image.Source>
+                            <SvgImageSource UriSource="ms-appx:///Assets/test2.svg"
+                                            
+                                            RasterizePixelWidth="48"
+                                            RasterizePixelHeight="48"
+                                            />
+                        </Image.Source>
+                    </Image>
+                    --><!--<Image 
+                           Source="ms-appx:///Assets/test2.svg" 
+                           Stretch="Fill"/>-->
+                    <!--<Grid>
+                        <Ellipse x:Name="RecordEnableIcon" Fill="Red" Width="65" Height="65"/>
+                        <Ellipse x:Name="RecordDisEnableIcon" Visibility="Collapsed" Fill="#FF6E6D6D" Width="65" Height="65"/>
+                    </Grid>--><!--
+                </Button>-->
+                <Button Name="PrevBtn"
+                        Width="84" Height="84"
+                        CornerRadius="90"
+                        Click="PrevBtn_Click"
+                        VerticalAlignment="Center">
+                    
+                    <Grid Margin="-10,-6,-10,-7">
+                        <Image x:Name="PrevBtnEnable" Source="ms-appx:///Assets/page_3_button_front.png" Stretch="Fill" />
+                        <Image x:Name="PrevBtnDisable" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_back.png" Stretch="Fill" Margin="-10,-6,-10,-7"/>
+                    </Grid>
+                </Button>
+                <!--<Image Source="ms-appx:///Assets/page_3_button_front.png" Width="84" Height="84"/>-->
+                <!--<Image Width="84" Height="84" Stretch="Uniform" VerticalAlignment="Center">
+                    <Image.Source>
+                        <SvgImageSource UriSource="ms-appx:///Assets/test.svg"
+                                        RasterizePixelHeight="48"
+                                        RasterizePixelWidth="48"/>
+                    </Image.Source>
+                </Image>-->
+                
                 <Button Name="RecordBtn" Click="VideoButton_Click" IsEnabled="True" Width="84" Height="84" Margin="20" CornerRadius="90" BorderThickness="1.0" HorizontalAlignment="Center">
                     <Grid>
                         <Ellipse x:Name="RecordEnableIcon" Fill="Red" Width="65" Height="65"/>

@@ -16,12 +16,14 @@ namespace BlueAid_RC.Util
         public event Action<bool> audioPlayEndedEvent;
         public AudioPlayHandler()
         {
-            mediaPlayer = new MediaPlayer();
+            
         }
 
         public void Start(string audioPath)
         {
             System.Threading.Thread.Sleep(500);
+
+            mediaPlayer = new MediaPlayer();
             mediaPlayer.Source = MediaSource.CreateFromUri(new Uri(audioPath));
             mediaPlayer.MediaEnded += MediaPlayer_MediaEnded;
             mediaPlayer.Play();

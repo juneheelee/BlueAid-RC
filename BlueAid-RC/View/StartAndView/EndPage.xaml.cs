@@ -31,6 +31,8 @@ namespace BlueAid_RC.View.StartAndView
         {
             Frame frame = Window.Current.Content as Frame;
             frame.Navigate(typeof(MainPage));
+
+
         }
     }
 }

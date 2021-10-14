@@ -526,5 +526,34 @@ namespace BlueAid_RC.View
             Frame frame = Window.Current.Content as Frame;
             frame.Navigate(typeof(MainPage));
         }
+
+        private void PrevBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (0 < FlipViewControl.SelectedIndex)
+            {
+                (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl)?.Dispose();
+                FlipViewControl.SelectedIndex--;
+                (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).Start();
+            }
+            else
+            {
+                Debug.WriteLine("시작페이지로 이동.");
+            }
+
+            //if (check)
+            //{
+            //    PrevBtnEnable.Visibility = Visibility.Collapsed;
+            //    PrevBtnDisable.Visibility = Visibility.Visible;
+            //    check = false;
+            //}
+            //else
+            //{
+            //    PrevBtnEnable.Visibility = Visibility.Visible;
+            //    PrevBtnDisable.Visibility = Visibility.Collapsed;
+            //    check = true;
+            //}
+            
+
+        }
     }
 }
