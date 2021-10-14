@@ -52,13 +52,29 @@
                 </FlipView>
             </Viewbox>
 
-            <Grid  Grid.Column="2">
+            <Grid  Grid.Column="0">
                 <Button Click="Home_Click" 
                         Content="처음으로" 
-                        VerticalAlignment="Bottom"
-                        HorizontalAlignment="Stretch"
-                        Margin="0" 
-                        CornerRadius="20"/>
+                        VerticalAlignment="Top"
+                        HorizontalContentAlignment="Left"
+                        Background="Transparent"
+                        Foreground="FloralWhite"
+                        Margin="10,20,0,0">
+                    <Button.Resources>
+                        <ResourceDictionary>
+                            <ResourceDictionary.ThemeDictionaries>
+                                <ResourceDictionary x:Key="Dark">
+                                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="AliceBlue"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+                                </ResourceDictionary>
+                                <ResourceDictionary x:Key="Light">
+                                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="AliceBlue"/>
+                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="Transparent"/>
+                                </ResourceDictionary>
+                            </ResourceDictionary.ThemeDictionaries>
+                        </ResourceDictionary>
+                    </Button.Resources>
+                </Button>
             </Grid>
         </Grid>
 
@@ -73,85 +89,43 @@
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
 
-                <!--<Button Name="PrevBtn" Click="PrevBtn_Click"
-                        IsEnabled="True" Width="84" Height="84" 
-                        Margin="20" CornerRadius="90" BorderThickness="1.0" 
-                        HorizontalAlignment="Stretch">
-                    <Image Stretch="UniformToFill">
-                        <Image.Source>
-                            <SvgImageSource UriSource="ms-appx:///Assets/test2.svg"
-                                            
-                                            RasterizePixelWidth="48"
-                                            RasterizePixelHeight="48"
-                                            />
-                        </Image.Source>
-                    </Image>
-                    --><!--<Image 
-                           Source="ms-appx:///Assets/test2.svg" 
-                           Stretch="Fill"/>-->
-                    <!--<Grid>
-                        <Ellipse x:Name="RecordEnableIcon" Fill="Red" Width="65" Height="65"/>
-                        <Ellipse x:Name="RecordDisEnableIcon" Visibility="Collapsed" Fill="#FF6E6D6D" Width="65" Height="65"/>
-                    </Grid>--><!--
-                </Button>-->
                 <Button Name="PrevBtn"
                         Width="84" Height="84"
+                        Margin="20"
                         CornerRadius="90"
                         Click="PrevBtn_Click"
                         VerticalAlignment="Center">
                     
                     <Grid Margin="-10,-6,-10,-7">
                         <Image x:Name="PrevBtnEnable" Source="ms-appx:///Assets/page_3_button_front.png" Stretch="Fill" />
-                        <Image x:Name="PrevBtnDisable" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_back.png" Stretch="Fill" Margin="-10,-6,-10,-7"/>
+                        <Image x:Name="PrevBtnDisable" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_front1.png" 
+                               Stretch="Fill"/>
                     </Grid>
                 </Button>
-                <!--<Image Source="ms-appx:///Assets/page_3_button_front.png" Width="84" Height="84"/>-->
-                <!--<Image Width="84" Height="84" Stretch="Uniform" VerticalAlignment="Center">
-                    <Image.Source>
-                        <SvgImageSource UriSource="ms-appx:///Assets/test.svg"
-                                        RasterizePixelHeight="48"
-                                        RasterizePixelWidth="48"/>
-                    </Image.Source>
-                </Image>-->
                 
                 <Button Name="RecordBtn" Click="VideoButton_Click" IsEnabled="True" Width="84" Height="84" Margin="20" CornerRadius="90" BorderThickness="1.0" HorizontalAlignment="Center">
-                    <Grid>
-                        <Ellipse x:Name="RecordEnableIcon" Fill="Red" Width="65" Height="65"/>
-                        <Ellipse x:Name="RecordDisEnableIcon" Visibility="Collapsed" Fill="#FF6E6D6D" Width="65" Height="65"/>
+                    <Grid Margin="-10,-6,-10,-7">
+                        <Image x:Name="RecordEnableIcon" Source="ms-appx:///Assets/page_3_button_recording.png" Stretch="Fill" />
+                        <Image x:Name="RecordDisEnableIcon" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_recording1.png" 
+                               Stretch="Fill"/>
                     </Grid>
                 </Button>
                 <Button Name="StopBtn" Click="StopBtn_Click" IsEnabled="False" Width="84" Height="84" Margin="20" CornerRadius="90" BorderThickness="1.0" HorizontalAlignment="Center">
-                    <Grid>
-                        <Ellipse x:Name="RecordStopEnableIcon" Fill="Blue" Width="65" Height="65"/>
-                        <Ellipse x:Name="RecordStopDisEnableIcon" Visibility="Collapsed" Fill="#FF6E6D6D" Width="65" Height="65"/>
+                    <Grid Margin="-10,-6,-10,-7">
+                        <Image x:Name="RecordStopEnableIcon" Source="ms-appx:///Assets/page_3_button_stop.png" Stretch="Fill" />
+                        <Image x:Name="RecordStopDisEnableIcon" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_stop1.png" 
+                               Stretch="Fill"/>
                     </Grid>
                 </Button>
 
                 <Button x:Name="NextBtn"
                         Click="Next_Click" 
-                        IsEnabled="False"
-                        Width="80" 
-                        Height="90" 
-                        Margin="20" 
-                        BorderBrush="Transparent"
-                        Foreground="White"  
-                        Background="#90c42a"
-                        Windows10version1809:CornerRadius="20">
-                    <Button.Resources>
-                        <ResourceDictionary>
-                            <ResourceDictionary.ThemeDictionaries>
-                                <ResourceDictionary x:Key="Dark">
-                                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
-                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#FF449CD9"/>
-                                </ResourceDictionary>
-                                <ResourceDictionary x:Key="Light">
-                                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White"/>
-                                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="#FF449CD9"/>
-                                </ResourceDictionary>
-                            </ResourceDictionary.ThemeDictionaries>
-                        </ResourceDictionary>
-                    </Button.Resources>
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="다음" FontSize="24" FontWeight="Bold"/>
+                        Width="84" Height="84" Margin="20" CornerRadius="90" BorderThickness="1.0" HorizontalAlignment="Center">
+                    <Grid Margin="-10,-6,-10,-7">
+                        <Image x:Name="NextEnableIcon" Source="ms-appx:///Assets/page_3_button_back.png" Stretch="Fill" />
+                        <Image x:Name="NextDisEnableIcon" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_back1.png" 
+                               Stretch="Fill"/>
+                    </Grid>
                 </Button>
             </StackPanel>
 

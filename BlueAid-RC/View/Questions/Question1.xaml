@@ -14,7 +14,7 @@
                         Margin="0,0,0,50"
                         FontFamily="돋음"
                         Foreground="White"
-                        FontSize="50"
+                        FontSize="70"
                         FontWeight="Bold"
                         Text="Q.1 환자분 성함이 어떻게 되시나요?"/>
     </Grid>

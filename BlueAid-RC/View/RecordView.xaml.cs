@@ -173,7 +173,6 @@ namespace BlueAid_RC.View
                 await StopRecordingAsync();
                 await _audioHandler?.StopAudioRecording();
             }
-            //UpdateCaptureControls();
             StopBtn.IsEnabled = false;
             _audioPlayHandler.Start("ms-appx:///Assets/good.mp3");
         }
@@ -182,7 +181,6 @@ namespace BlueAid_RC.View
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
                 UpdateCaptureControls();
-                NextBtn.IsEnabled = true;
             }); 
         }
 
@@ -518,7 +516,6 @@ namespace BlueAid_RC.View
                 Frame frame = Window.Current.Content as Frame;
                 frame.Navigate(typeof(EndPage));
             }
-            NextBtn.IsEnabled = false;
         }
 
         private void Home_Click(object sender, RoutedEventArgs e)
@@ -539,21 +536,6 @@ namespace BlueAid_RC.View
             {
                 Debug.WriteLine("시작페이지로 이동.");
             }
-
-            //if (check)
-            //{
-            //    PrevBtnEnable.Visibility = Visibility.Collapsed;
-            //    PrevBtnDisable.Visibility = Visibility.Visible;
-            //    check = false;
-            //}
-            //else
-            //{
-            //    PrevBtnEnable.Visibility = Visibility.Visible;
-            //    PrevBtnDisable.Visibility = Visibility.Collapsed;
-            //    check = true;
-            //}
-            
-
         }
     }
 }

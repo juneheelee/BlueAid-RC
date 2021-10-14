@@ -15,14 +15,14 @@
                         Margin="0,0,0,50"
                         FontFamily="돋음"
                         Foreground="White"
-                        FontSize="50"
+                        FontSize="70"
                         FontWeight="Bold"
                         Text="다음 신문사설을 읽어 주세요"/>
 
             <TextBlock  Margin="0,0,0,30"
                         FontFamily="돋음"
-                        FontSize="35"
-                        FontWeight="Bold"
+                        FontSize="40"
+                        FontWeight="SemiBold"
                         Foreground="White"
                         TextWrapping="Wrap"
                         Text="4년 뒤인 2025년 도입이 목표인 '하늘을 나는 택시'는 초기에는 비행사가 직접 탑승해 조종한다.
@@ -30,24 +30,24 @@
 
             <TextBlock  Margin="0,0,0,30"
                         FontFamily="돋음"
-                        FontSize="35"
-                        FontWeight="Bold"
+                        FontSize="40"
+                        FontWeight="SemiBold"
                         Foreground="White"
                         TextWrapping="Wrap"
                         Text="전기로 비행하는 수직이착륙기를 쓰기 때문에 별도의 활주로가 필요 없고, 헬기보다 소음이 적어 도심 내 이동 또는 가까운 도시와 도시 사이를 오가는 데 경쟁력이 있다는 설명이다. 하늘을 나는 에어택시가 대표적인 서비스다."/>
 
             <TextBlock  Margin="0,0,0,30"
                         FontFamily="돋음"
-                        FontSize="35"
-                        FontWeight="Bold"
+                        FontSize="40"
+                        FontWeight="SemiBold"
                         Foreground="White"
                         TextWrapping="Wrap"
                         Text="초기에는 기장이 직접 비행체에 탑승해 조종하는 방식이 사용된다. 이후 성장기에는 통제실에서 비행체를 원격조종할 예정이다. 현재 민간과 군사용으로 많이 사용하는 드론이 대부분 원격조종 방식을 쓰고 있다."/>
 
             <TextBlock  Margin="0,20,0,0"
                         FontFamily="돋음"
-                        FontSize="35"
-                        FontWeight="Bold"
+                        FontSize="40"
+                        FontWeight="SemiBold"
                         Foreground="White"
                         TextWrapping="Wrap"
                         Text="현재 국내에서는 인천공항공사와 현대자동차, 한국공항공사(김포공항 등)와 한화시스템 등이 각각 컨소시엄을 구성해 비행체 개발과 버티포트 설치, 관제시스템 개발 등 UAM 체계 구축에 나서고 있다."/>

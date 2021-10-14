@@ -6,33 +6,24 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="800"
+    d:DesignHeight="1080"
     d:DesignWidth="1920">
 
     <Grid Background="#1a2555">
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.15*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                   Grid.Row="0"
                    FontFamily="돋음"
                    FontSize="60"
                    Foreground="White"
                    FontWeight="Bold"
                    Text="다음 그림에서 보이는 것 3가지를 말씀해 주세요"/>
-            <Grid HorizontalAlignment="Center">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="600"/>
-                    <ColumnDefinition Width="600"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Image Margin="10" Source="ms-appx:///Assets/zoo.jpg" Stretch="Fill"/>
-                <Image Margin="10" Grid.Column="1" Source="ms-appx:///Assets/giraffe.jpg" Stretch="Fill"/>
-                <Image Margin="10" Grid.Row="1" Source="ms-appx:///Assets/lion.jpg" Stretch="Fill"/>
-                <Image Margin="10" Grid.Row="1" Grid.Column="1" Source="ms-appx:///Assets/elephant.jpg" Stretch="Fill"/>
-            </Grid>
-
-        </StackPanel>
+        <Image Margin="10" 
+               Grid.Row="1"
+               Source="ms-appx:///Assets/picture1.png"  Stretch="Fill"/>
 
     </Grid>
 </UserControl>

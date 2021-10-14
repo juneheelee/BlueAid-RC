@@ -14,7 +14,7 @@
                         Margin="0,0,0,50"
                         FontFamily="돋음"
                         Foreground="White"
-                        FontSize="50"
+                        FontSize="70"
                         FontWeight="Bold"
                         Text="Q.3 오늘 병원에는 누구와 함께 오셨나요?"/>
     </Grid>

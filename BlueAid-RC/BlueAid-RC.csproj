@@ -181,14 +181,23 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\BadgeLogo.scale-100.png" />
     <Content Include="Assets\chapter1-2.mp4" />
     <Content Include="Assets\chapter3.mp4" />
     <Content Include="Assets\epp.mp3" />
     <Content Include="Assets\good.mp3" />
     <Content Include="Assets\intro.mp4" />
+    <Content Include="Assets\page_1_graphic.png" />
     <Content Include="Assets\page_3_button_back.png" />
+    <Content Include="Assets\page_3_button_back1.png" />
     <Content Include="Assets\page_3_button_front.png" />
-    <Content Include="Assets\page_3_button_front.svg" />
+    <Content Include="Assets\page_3_button_front1.png" />
+    <Content Include="Assets\page_3_button_recording.png" />
+    <Content Include="Assets\page_3_button_recording1.png" />
+    <Content Include="Assets\page_3_button_stop.png" />
+    <Content Include="Assets\page_3_button_stop1.png" />
+    <Content Include="Assets\picture1.png" />
+    <Content Include="Assets\picture2.jpg" />
     <Content Include="Assets\Q1.mp3" />
     <Content Include="Assets\Q3.mp3" />
     <Content Include="Assets\Q4.mp3" />
@@ -198,10 +207,9 @@
     <Content Include="Assets\Question1.mp3" />
     <Content Include="Assets\Question2.mp3" />
     <Content Include="Assets\Question3.mp3" />
-    <Content Include="Assets\SplashScreen.png" />
+    <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\StoreLogo.targetsize-24.png" />
     <Content Include="Assets\test.mp4" />
-    <Content Include="Assets\test.svg" />
-    <Content Include="Assets\test2.svg" />
     <Content Include="Images\blue.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -220,9 +228,6 @@
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LockScreenLogo.scale-200.png" />
     <Content Include="Assets\Square150x150Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.scale-200.png" />
-    <Content Include="Assets\Square44x44Logo.targetsize-24_altform-unplated.png" />
-    <Content Include="Assets\StoreLogo.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
   </ItemGroup>
   <ItemGroup>
