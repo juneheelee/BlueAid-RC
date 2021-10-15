@@ -66,8 +66,8 @@ namespace BlueAid_RC.View
 
         private readonly string videoPath = "video";
 
-        private string userName = string.Empty;
-        private string userNumber = string.Empty;
+        private string _userName = string.Empty;
+        private string _userNumber = string.Empty;
 
         private AudioRecordingHandler _audioHandler;
         private AudioPlayHandler _audioPlayHandler;
@@ -127,10 +127,12 @@ namespace BlueAid_RC.View
             await SetUpBasedOnStateAsync();
 
             User user = e.Parameter as User;
-            userName = user.userName;
-            userNumber = user.userNumber;
+            _userName = user.userName;
+            _userNumber = user.userNumber;
 
             await Refresh();
+            UpdatePrevButton();
+            UpdateNextButton();
 
             (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).Start();
         }
@@ -181,6 +183,7 @@ namespace BlueAid_RC.View
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
                 UpdateCaptureControls();
+                UpdateNextButton();
             }); 
         }
 
@@ -319,7 +322,7 @@ namespace BlueAid_RC.View
             try
             {
                 // Create storage file for the capture
-                var userPath = userName + "_" + userNumber;
+                var userPath = _userName + "_" + _userNumber;
                 var captureFileName = $"chapter{FlipViewControl.SelectedIndex + 1}.mp4";
                 var captureFullPath = Path.Combine(videoPath, userPath, captureFileName);
                 var videoFile = await _captureFolder.CreateFileAsync(captureFullPath, CreationCollisionOption.ReplaceExisting);
@@ -502,13 +505,16 @@ namespace BlueAid_RC.View
             return desiredDevice ?? allVideoDevices.FirstOrDefault();
         }
 
-        private void Next_Click(object sender, RoutedEventArgs e)
+        private async void Next_Click(object sender, RoutedEventArgs e)
         {
             (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl)?.Dispose();
             if (FlipViewControl.Items.Count -1 > FlipViewControl.SelectedIndex)
             {
                 FlipViewControl.SelectedIndex++;
                 (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).Start();
+
+                UpdatePrevButton();
+                UpdateNextButton();
             }
             else
             {
@@ -518,19 +524,48 @@ namespace BlueAid_RC.View
             }
         }
 
+        private void UpdatePrevButton()
+        {
+            PrevBtn.IsEnabled = FlipViewControl.SelectedIndex != 0 ? true : false;
+            PrevBtnEnable.Visibility = PrevBtn.IsEnabled ? Visibility.Visible : Visibility.Collapsed;
+            PrevBtnDisable.Visibility = PrevBtn.IsEnabled ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        private async void UpdateNextButton()
+        {
+            bool existRecordFile = await ExistRecordFile();
+            NextBtn.IsEnabled = existRecordFile;
+
+            NextEnableIcon.Visibility = existRecordFile ? Visibility.Visible : Visibility.Collapsed;
+            NextDisEnableIcon.Visibility = existRecordFile ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        private async Task<bool> ExistRecordFile()
+        {
+            var userPath = _userName + "_" + _userNumber;
+
+            int nextChapter = 1;
+            var captureFileName = $"chapter{FlipViewControl.SelectedIndex + nextChapter}.mp4";
+
+            return await FileStorageUtils.GetInstance.ExistRecordFile(Path.Combine(userPath, captureFileName));
+        }
+
         private void Home_Click(object sender, RoutedEventArgs e)
         {
             Frame frame = Window.Current.Content as Frame;
             frame.Navigate(typeof(MainPage));
         }
 
-        private void PrevBtn_Click(object sender, RoutedEventArgs e)
+        private async void PrevBtn_Click(object sender, RoutedEventArgs e)
         {
             if (0 < FlipViewControl.SelectedIndex)
             {
                 (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl)?.Dispose();
                 FlipViewControl.SelectedIndex--;
                 (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).Start();
+
+                UpdatePrevButton();
+                UpdateNextButton();
             }
             else
             {

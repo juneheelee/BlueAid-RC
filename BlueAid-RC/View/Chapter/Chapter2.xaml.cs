@@ -48,7 +48,7 @@ namespace BlueAid_RC.View.Chapter
 
         public void Dispose()
         {
-
+            audioPlayHandler.Dispose();
         }
     }
 }

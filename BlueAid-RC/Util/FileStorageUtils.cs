@@ -50,11 +50,10 @@ namespace BlueAid_RC.Util
         public async Task<bool> ExistUserFile(User user)
         {
             string newUser = user.userName + "_" + user.userNumber;
-            string videoPath = Path.Combine(_captureFolder.Path, VIDEO_ROOT_PATH);
             try
             {
-                StorageFolder parentFolder = Package.Current.InstalledLocation;
-                StorageFolder childFolder = await parentFolder.GetFolderAsync("Assets");
+                //StorageFolder parentFolder = Package.Current.InstalledLocation;
+                //StorageFolder childFolder = await parentFolder.GetFolderAsync("Assets");
 
                 StorageFolder storageFolder = await _captureFolder.GetFolderAsync(VIDEO_ROOT_PATH);
                 IReadOnlyList<StorageFolder> storageFolders = await storageFolder.GetFoldersAsync();
@@ -74,6 +73,21 @@ namespace BlueAid_RC.Util
                 Debug.WriteLine(ex.ToString());
             }
             
+            return false;
+        }
+
+        public async Task<bool> ExistRecordFile(String userVideoPath)
+        {
+            try
+            {
+                StorageFile storageFile = await _captureFolder.GetFileAsync(Path.Combine(VIDEO_ROOT_PATH, userVideoPath));
+                Debug.WriteLine("경로 : " + storageFile.Name);
+                return true;
+            }
+            catch (Exception)
+            {
+                Debug.WriteLine("파일이 존재하지 않습니다.");
+            }
             return false;
         }
     }

@@ -15,10 +15,6 @@
     <Grid>
         <Grid.Background >
             <SolidColorBrush Color="#1a2555"/>
-            <!--<LinearGradientBrush StartPoint="0.1,1.6" EndPoint="0.9,1">
-                <GradientStop Color="#FF28835A" Offset="1" />
-                <GradientStop Color="#FF0F3BFF" Offset="0" />
-            </LinearGradientBrush>-->
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>

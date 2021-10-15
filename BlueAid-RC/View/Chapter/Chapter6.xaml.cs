@@ -25,15 +25,17 @@ namespace BlueAid_RC.View.Chapter
         {
             this.InitializeComponent();
 
-            audioPlayHandler = new AudioPlayHandler();
+           
         }
         public void Start()
         {
+            audioPlayHandler = new AudioPlayHandler();
             audioPlayHandler.Start("ms-appx:///Assets/Q4.mp3");
         }
 
         public void Dispose()
         {
+            audioPlayHandler.Dispose();
         }
     }
 }

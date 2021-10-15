@@ -28,17 +28,17 @@ namespace BlueAid_RC.View.Chapter
         public Chapter8()
         {
             this.InitializeComponent();
-
-            audioPlayHandler = new AudioPlayHandler();
         }
         
         public void Start()
         {
+            audioPlayHandler = new AudioPlayHandler();
             audioPlayHandler.Start("ms-appx:///Assets/Q6.mp3");
         }
 
         public void Dispose()
         {
+            audioPlayHandler.Dispose();
         }
     }
 }

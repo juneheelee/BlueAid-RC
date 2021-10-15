@@ -1,6 +1,7 @@
 ﻿using BlueAid_RC.Model;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -8,6 +9,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Media.Core;
 using Windows.Media.Playback;
+using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -45,8 +47,18 @@ namespace BlueAid_RC.View.StartAndView
 
             VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/intro.mp4"));
             videoPlayer = VideoPlayerElement.MediaPlayer;
+            videoPlayer.MediaEnded += VideoPlayer_MediaEnded;
+
             videoPlayer.Play();
             videoPlayer.IsLoopingEnabled = false;
+        }
+
+        private async void VideoPlayer_MediaEnded(MediaPlayer sender, object args)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                StartBtn.IsEnabled = true;
+            });
+            
         }
 
         public void Dispose()

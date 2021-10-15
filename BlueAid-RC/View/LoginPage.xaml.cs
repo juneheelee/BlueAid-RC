@@ -33,11 +33,11 @@ namespace BlueAid_RC.View
             this.InitializeComponent();
             ErrorMessage.Visibility = Visibility.Collapsed;
             FileStorageUtils.GetInstance.Init();
+           
         }
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)
         {
-            
             User user = new User(txtUsername.Text, txtUserNumber.Text);
 
             bool isValidate = ValidationInputCheck(user);

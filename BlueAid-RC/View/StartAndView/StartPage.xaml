@@ -28,6 +28,8 @@
                 Width="200"
                 Height="100"
                 Click="Button_Click"
+                IsEnabled="False"
+                Name="StartBtn"
                 BorderBrush="Transparent"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"

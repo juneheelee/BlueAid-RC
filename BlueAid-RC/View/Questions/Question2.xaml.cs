@@ -28,18 +28,18 @@ namespace BlueAid_RC.View.Questions
         public Question2()
         {
             this.InitializeComponent();
-
-            audioPlayHandler = new AudioPlayHandler();
         }
 
 
         public void Start()
         {
+            audioPlayHandler = new AudioPlayHandler();
             audioPlayHandler.Start("ms-appx:///Assets/Question2.mp3");
         }
 
         public void Dispose()
         {
+            audioPlayHandler.Dispose();
         }
     }
 }
