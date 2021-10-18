@@ -24,11 +24,14 @@ namespace BlueAid_RC.View.Chapter
     {
         private AudioPlayHandler audioPlayHandler;
         private MediaPlayer videoPlayer;
+        public event Action<bool> MediaEndEvent;
 
         public Chapter3()
         {
             this.InitializeComponent();
-            Init();
+            VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/chapter3.mp4"));
+            videoPlayer = VideoPlayerElement.MediaPlayer;
+            videoPlayer.MediaEnded += VideoPlayer_MediaEnded;
         }
 
         public void Init()
@@ -38,9 +41,14 @@ namespace BlueAid_RC.View.Chapter
                 audioPlayHandler = new AudioPlayHandler();
                 audioPlayHandler.audioPlayEndedEvent += AudioPlayHandler_audioPlayEndedEvent;
             }
-            
-            VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/chapter3.mp4"));
-            videoPlayer = VideoPlayerElement.MediaPlayer;
+        }
+
+        private void VideoPlayer_MediaEnded(MediaPlayer sender, object args)
+        {
+            if (MediaEndEvent != null)
+            {
+                MediaEndEvent(true);
+            }
         }
 
         private void AudioPlayHandler_audioPlayEndedEvent(bool obj)
@@ -57,7 +65,13 @@ namespace BlueAid_RC.View.Chapter
 
         public void Dispose()
         {
-            videoPlayer?.Pause();
+            if (videoPlayer != null)
+            {
+                videoPlayer.Pause();
+                //videoPlayer.MediaEnded -= VideoPlayer_MediaEnded;
+                //MediaEndEvent = null;
+            }
+
             if (audioPlayHandler != null)
             {
                 audioPlayHandler.audioPlayEndedEvent -= AudioPlayHandler_audioPlayEndedEvent;

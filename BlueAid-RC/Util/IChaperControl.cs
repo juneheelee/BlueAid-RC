@@ -10,5 +10,7 @@ namespace BlueAid_RC.Util
     {
         void Start();
         void Dispose();
+
+        event Action<bool> MediaEndEvent;
     }
 }

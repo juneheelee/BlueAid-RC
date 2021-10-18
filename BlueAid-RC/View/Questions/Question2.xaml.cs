@@ -24,7 +24,7 @@ namespace BlueAid_RC.View.Questions
     public sealed partial class Question2 : UserControl, IChaperControl
     {
         private AudioPlayHandler audioPlayHandler;
-
+        public event Action<bool> MediaEndEvent;
         public Question2()
         {
             this.InitializeComponent();
@@ -34,12 +34,25 @@ namespace BlueAid_RC.View.Questions
         public void Start()
         {
             audioPlayHandler = new AudioPlayHandler();
+            audioPlayHandler.audioPlayEndedEvent += AudioPlayHandler_audioPlayEndedEvent;
             audioPlayHandler.Start("ms-appx:///Assets/Question2.mp3");
+        }
+        private void AudioPlayHandler_audioPlayEndedEvent(bool obj)
+        {
+            if (MediaEndEvent != null)
+            {
+                MediaEndEvent(true);
+            }
         }
 
         public void Dispose()
         {
-            audioPlayHandler.Dispose();
+            if (audioPlayHandler != null)
+            {
+                audioPlayHandler.audioPlayEndedEvent -= AudioPlayHandler_audioPlayEndedEvent;
+                audioPlayHandler.Dispose();
+                audioPlayHandler = null;
+            }
         }
     }
 }

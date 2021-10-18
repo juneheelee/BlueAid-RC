@@ -24,12 +24,12 @@ namespace BlueAid_RC.View.Chapter
     public sealed partial class Chapter2 : UserControl, IChaperControl
     {
         private AudioPlayHandler audioPlayHandler;
-        private MediaPlayer videoPlayer;
+        public event Action<bool> MediaEndEvent;
         public Chapter2()
         {
             this.InitializeComponent();
 
-            Init();
+            //Init();
         }
 
         public void Init()
@@ -37,6 +37,15 @@ namespace BlueAid_RC.View.Chapter
             if (audioPlayHandler == null)
             {
                 audioPlayHandler = new AudioPlayHandler();
+                audioPlayHandler.audioPlayEndedEvent += AudioPlayHandler_audioPlayEndedEvent;
+            }
+        }
+
+        private void AudioPlayHandler_audioPlayEndedEvent(bool obj)
+        {
+            if (MediaEndEvent != null)
+            {
+                MediaEndEvent(true);
             }
         }
 
@@ -48,7 +57,14 @@ namespace BlueAid_RC.View.Chapter
 
         public void Dispose()
         {
-            audioPlayHandler.Dispose();
+            if (audioPlayHandler != null)
+            {
+                audioPlayHandler.audioPlayEndedEvent -= AudioPlayHandler_audioPlayEndedEvent;
+                audioPlayHandler.Dispose();
+                audioPlayHandler = null;
+                //MediaEndEvent = null;
+            }
+                
         }
     }
 }

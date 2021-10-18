@@ -131,10 +131,33 @@ namespace BlueAid_RC.View
             _userNumber = user.userNumber;
 
             await Refresh();
+
+            UnableUiControlButton();
             UpdatePrevButton();
             UpdateNextButton();
 
             (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).Start();
+            (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).MediaEndEvent += RecordView_VideoEndEvent;
+        }
+
+        private async void RecordView_VideoEndEvent(bool obj)
+        {
+            await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
+                RecordBtn.IsEnabled = true;
+                RecordEnableIcon.Visibility = Visibility.Visible;
+                RecordDisEnableIcon.Visibility = Visibility.Collapsed;
+            });
+        }
+
+        private void UnableUiControlButton()
+        {
+            RecordBtn.IsEnabled = false;
+            RecordEnableIcon.Visibility = Visibility.Collapsed;
+            RecordDisEnableIcon.Visibility = Visibility.Visible;
+
+            StopBtn.IsEnabled = false;
+            RecordStopEnableIcon.Visibility = Visibility.Collapsed;
+            RecordStopDisEnableIcon.Visibility = Visibility.Visible;
         }
 
         protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
@@ -167,6 +190,8 @@ namespace BlueAid_RC.View
 
             // After starting or stopping video recording, update the UI to reflect the MediaCapture state
             UpdateCaptureControls();
+            UpdatePrevButton();
+            UpdateNextButton();
         }
         private async void StopBtn_Click(object sender, RoutedEventArgs e)
         {
@@ -184,6 +209,7 @@ namespace BlueAid_RC.View
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
                 UpdateCaptureControls();
                 UpdateNextButton();
+                UpdatePrevButton();
             }); 
         }
 
@@ -269,7 +295,7 @@ namespace BlueAid_RC.View
 
                     await StartPreviewAsync();
 
-                    UpdateCaptureControls();
+                    //UpdateCaptureControls();
                 }
             }
         }
@@ -512,7 +538,8 @@ namespace BlueAid_RC.View
             {
                 FlipViewControl.SelectedIndex++;
                 (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).Start();
-
+                (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).MediaEndEvent += RecordView_VideoEndEvent;
+                UnableUiControlButton();
                 UpdatePrevButton();
                 UpdateNextButton();
             }
@@ -526,18 +553,18 @@ namespace BlueAid_RC.View
 
         private void UpdatePrevButton()
         {
-            PrevBtn.IsEnabled = FlipViewControl.SelectedIndex != 0 ? true : false;
-            PrevBtnEnable.Visibility = PrevBtn.IsEnabled ? Visibility.Visible : Visibility.Collapsed;
-            PrevBtnDisable.Visibility = PrevBtn.IsEnabled ? Visibility.Collapsed : Visibility.Visible;
+            PrevBtn.IsEnabled = (FlipViewControl.SelectedIndex != 0 && !_isRecording) ? true : false;
+            PrevBtnEnable.Visibility = (PrevBtn.IsEnabled && !_isRecording) ? Visibility.Visible : Visibility.Collapsed;
+            PrevBtnDisable.Visibility = (PrevBtn.IsEnabled && !_isRecording) ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private async void UpdateNextButton()
         {
             bool existRecordFile = await ExistRecordFile();
-            NextBtn.IsEnabled = existRecordFile;
+            NextBtn.IsEnabled = existRecordFile && !_isRecording;
 
-            NextEnableIcon.Visibility = existRecordFile ? Visibility.Visible : Visibility.Collapsed;
-            NextDisEnableIcon.Visibility = existRecordFile ? Visibility.Collapsed : Visibility.Visible;
+            NextEnableIcon.Visibility = NextBtn.IsEnabled ? Visibility.Visible : Visibility.Collapsed;
+            NextDisEnableIcon.Visibility = NextBtn.IsEnabled ? Visibility.Collapsed : Visibility.Visible;
         }
 
         private async Task<bool> ExistRecordFile()
@@ -563,7 +590,9 @@ namespace BlueAid_RC.View
                 (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl)?.Dispose();
                 FlipViewControl.SelectedIndex--;
                 (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).Start();
+                (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).MediaEndEvent += RecordView_VideoEndEvent;
 
+                UnableUiControlButton();
                 UpdatePrevButton();
                 UpdateNextButton();
             }

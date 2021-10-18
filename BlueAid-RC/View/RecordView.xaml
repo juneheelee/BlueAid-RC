@@ -102,8 +102,8 @@
                 
                 <Button Name="RecordBtn" Click="VideoButton_Click" IsEnabled="True" Width="84" Height="84" Margin="20" CornerRadius="90" BorderThickness="1.0" HorizontalAlignment="Center">
                     <Grid Margin="-10,-6,-10,-7">
-                        <Image x:Name="RecordEnableIcon" Source="ms-appx:///Assets/page_3_button_recording.png" Stretch="Fill" />
-                        <Image x:Name="RecordDisEnableIcon" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_recording1.png" 
+                        <Image x:Name="RecordEnableIcon" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_recording.png" Stretch="Fill" />
+                        <Image x:Name="RecordDisEnableIcon" Source="ms-appx:///Assets/page_3_button_recording1.png" 
                                Stretch="Fill"/>
                     </Grid>
                 </Button>
