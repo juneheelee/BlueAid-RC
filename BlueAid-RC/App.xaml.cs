@@ -43,6 +43,10 @@ namespace BlueAid_RC
         {
             Frame rootFrame = Window.Current.Content as Frame;
 
+            //Configuration file
+            Windows.Storage.StorageFolder storageFolder = Windows.Storage.ApplicationData.Current.LocalFolder;
+            NLog.LogManager.Configuration.Variables["LogPath"] = storageFolder.Path;
+
             // 창에 콘텐츠가 이미 있는 경우 앱 초기화를 반복하지 말고,
             // 창이 활성화되어 있는지 확인하십시오.
             if (rootFrame == null)

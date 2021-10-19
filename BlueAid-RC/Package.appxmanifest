@@ -7,9 +7,9 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="399cf9da-6959-4edc-9d49-3e70290f3458"
+    Name="BlueAid-RC"
     Publisher="CN=cavu"
-    Version="1.0.0.0" />
+    Version="1.0.18.0" />
 
   <mp:PhoneIdentity PhoneProductId="399cf9da-6959-4edc-9d49-3e70290f3458" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 

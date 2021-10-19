@@ -27,6 +27,8 @@ namespace BlueAid_RC.View.StartAndView
     /// </summary>
     public sealed partial class StartPage : Page
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         private User userInfo;
 
         private MediaPlayer videoPlayer;
@@ -38,6 +40,7 @@ namespace BlueAid_RC.View.StartAndView
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Dispose();
+            Logger.Info("시작");
             Frame frame = Window.Current.Content as Frame;
             frame.Navigate(typeof(RecordView), userInfo);
         }

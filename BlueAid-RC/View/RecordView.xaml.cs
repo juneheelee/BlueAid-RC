@@ -38,6 +38,8 @@ namespace BlueAid_RC.View
     /// </summary>
     public sealed partial class RecordView : Page
     {
+        private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
+
         private static readonly Guid RotationKey = new Guid("C380465D-2271-428C-9B83-ECEA3B4A85C1");
 
         //카메라가 실행되는 동안 절전모드로 전환되지 않도록 방지
@@ -85,6 +87,7 @@ namespace BlueAid_RC.View
 
         private async Task Refresh()
         {
+            Logger.Info("Refresh 호출");
             //call your database here...
             //and update the UI afterwards:
             await Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
@@ -94,20 +97,10 @@ namespace BlueAid_RC.View
                 FlipViewControl.Focus(FocusState.Pointer);
             });
         }
-        private async void Application_Suspending(object sender, SuspendingEventArgs e)
-        {
-            _isSuspending = false;
-
-            var deferral = e.SuspendingOperation.GetDeferral();
-            var task = Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
-            {
-                await SetUpBasedOnStateAsync();
-                deferral.Complete();
-            });
-        }
 
         private void Application_Resuming(object sender, object o)
         {
+            Logger.Info("Application_Resuming 호출");
             _isSuspending = false;
 
             var task = Dispatcher.RunAsync(CoreDispatcherPriority.High, async () =>
@@ -118,8 +111,8 @@ namespace BlueAid_RC.View
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
+            Logger.Info("OnNavigatedTo 호출");
             // Useful to know when to initialize/clean up the camera
-            Application.Current.Suspending += Application_Suspending;
             Application.Current.Resuming += Application_Resuming;
             Window.Current.VisibilityChanged += Window_VisibilityChanged;
 
@@ -162,8 +155,8 @@ namespace BlueAid_RC.View
 
         protected override async void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
+            Logger.Info("OnNavigatingFrom 호출");
             // Handling of this event is included for completenes, as it will only fire when navigating between pages and this sample only includes one page
-            Application.Current.Suspending -= Application_Suspending;
             Application.Current.Resuming -= Application_Resuming;
             Window.Current.VisibilityChanged -= Window_VisibilityChanged;
 
@@ -177,6 +170,7 @@ namespace BlueAid_RC.View
         #region Event handlers
         private async void Window_VisibilityChanged(object sender, VisibilityChangedEventArgs args)
         {
+            Logger.Info("Window_VisibilityChanged 호출");
             await SetUpBasedOnStateAsync();
         }
 
@@ -216,7 +210,7 @@ namespace BlueAid_RC.View
         private async void MediaCapture_RecordLimitationExceeded(MediaCapture sender)
         {
             // This is a notification that recording has to stop, and the app is expected to finalize the recording
-
+            Logger.Info("MediaCapture_RecordLimitationExceeded 호출");
             await StopRecordingAsync();
 
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => UpdateCaptureControls());
@@ -224,8 +218,7 @@ namespace BlueAid_RC.View
 
         private async void MediaCapture_Failed(MediaCapture sender, MediaCaptureFailedEventArgs errorEventArgs)
         {
-            Debug.WriteLine("MediaCapture_Failed: (0x{0:X}) {1}", errorEventArgs.Code, errorEventArgs.Message);
-
+            Logger.Info(string.Format("MediaCapture_Failed 호출 : (0x{0:X}) {1}", errorEventArgs.Code, errorEventArgs.Message));
             await CleanupCameraAsync();
 
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => UpdateCaptureControls());
@@ -242,7 +235,7 @@ namespace BlueAid_RC.View
         /// <returns></returns>
         private async Task InitializeCameraAsync()
         {
-            Debug.WriteLine("InitializeCameraAsync");
+            Logger.Info("InitializeCameraAsync 호출");
 
             if (_mediaCapture == null)
             {
@@ -251,7 +244,7 @@ namespace BlueAid_RC.View
 
                 if (cameraDevice == null)
                 {
-                    Debug.WriteLine("No camera device found!");
+                    Logger.Error("No camera device found!");
                     return;
                 }
 
@@ -272,7 +265,7 @@ namespace BlueAid_RC.View
                 }
                 catch (UnauthorizedAccessException)
                 {
-                    Debug.WriteLine("The app was denied access to the camera");
+                    Logger.Error("The app was denied access to the camera");
                 }
 
                 // If initialization succeeded, start the preview
@@ -443,7 +436,7 @@ namespace BlueAid_RC.View
             // * The window is visible.
             // * The app is not suspending.
             bool wantUIActive = _isActivePage && Window.Current.Visible && !_isSuspending;
-
+            
             if (_isUIActive != wantUIActive)
             {
                 _isUIActive = wantUIActive;
@@ -452,12 +445,14 @@ namespace BlueAid_RC.View
                 {
                     if (wantUIActive)
                     {
+                        Logger.Info("UI 활성화");
                         await SetupUiAsync();
                         await InitializeCameraAsync();
                         await _audioHandler?.InitializeAudioAsync();
                     }
                     else
                     {
+                        Logger.Info("UI 비활성화");
                         await CleanupCameraAsync();
                         await CleanupUiAsync();
                     }
@@ -489,12 +484,6 @@ namespace BlueAid_RC.View
         /// <returns></returns>
         private async Task CleanupUiAsync()
         {
-            // Show the status bar
-            if (ApiInformation.IsTypePresent("Windows.UI.ViewManagement.StatusBar"))
-            {
-                //await Windows.UI.ViewManagement.StatusBar.GetForCurrentView().ShowAsync();
-            }
-
             // Revert orientation preferences
             DisplayInformation.AutoRotationPreferences = DisplayOrientations.None;
         }
