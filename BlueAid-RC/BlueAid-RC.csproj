@@ -195,11 +195,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\BadgeLogo.scale-100.png" />
-    <Content Include="Assets\chapter1-2.mp4" />
-    <Content Include="Assets\chapter3.mp4" />
     <Content Include="Assets\epp.mp3" />
     <Content Include="Assets\good.mp3" />
-    <Content Include="Assets\intro.mp4" />
     <Content Include="Assets\page_1_graphic.png" />
     <Content Include="Assets\page_3_button_back.png" />
     <Content Include="Assets\page_3_button_back1.png" />
@@ -222,6 +219,9 @@
     <Content Include="Assets\Question3.mp3" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
     <Content Include="Assets\StoreLogo.targetsize-24.png" />
+    <Content Include="Assets\chapter1.mp4" />
+    <Content Include="Assets\intro.mp4" />
+    <Content Include="Assets\chapter3.mp4" />
     <Content Include="Assets\test.mp4" />
     <Content Include="Images\blue.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

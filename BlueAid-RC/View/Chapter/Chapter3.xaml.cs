@@ -30,6 +30,7 @@ namespace BlueAid_RC.View.Chapter
         {
             this.InitializeComponent();
             VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/chapter3.mp4"));
+            //VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/test.mp4"));
             videoPlayer = VideoPlayerElement.MediaPlayer;
             videoPlayer.MediaEnded += VideoPlayer_MediaEnded;
         }
