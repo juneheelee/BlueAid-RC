@@ -15,7 +15,7 @@
                    FontFamily="돋음"
                    Foreground="White"
                    TextWrapping="Wrap"
-                   FontSize="58"
+                   FontSize="85"
                    FontWeight="Bold"/>
         <!--<Grid.RowDefinitions>
             <RowDefinition Height="*"/>

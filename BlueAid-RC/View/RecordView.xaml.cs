@@ -202,6 +202,7 @@ namespace BlueAid_RC.View
         {
             await Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () => {
                 UpdateCaptureControls();
+                UpdateRecordTxt();
                 UpdateNextButton();
                 UpdatePrevButton();
             }); 
@@ -528,7 +529,13 @@ namespace BlueAid_RC.View
                 FlipViewControl.SelectedIndex++;
                 (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).Start();
                 (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).MediaEndEvent += RecordView_VideoEndEvent;
+
+                //RecordTxtEnable.Visibility = Visibility.Visible;
+                //ReRecordTxtEnable.Visibility = Visibility.Collapsed;
+
                 UnableUiControlButton();
+                UpdateRecordTxt();
+
                 UpdatePrevButton();
                 UpdateNextButton();
             }
@@ -581,7 +588,10 @@ namespace BlueAid_RC.View
                 (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).Start();
                 (FlipViewControl.Items[FlipViewControl.SelectedIndex] as IChaperControl).MediaEndEvent += RecordView_VideoEndEvent;
 
+                //RecordTxtEnable.Visibility = Visibility.Collapsed;
+                //ReRecordTxtEnable.Visibility = Visibility.Visible;
                 UnableUiControlButton();
+                UpdateRecordTxt();
                 UpdatePrevButton();
                 UpdateNextButton();
             }
@@ -589,6 +599,13 @@ namespace BlueAid_RC.View
             {
                 Debug.WriteLine("시작페이지로 이동.");
             }
+        }
+
+        private async void UpdateRecordTxt()
+        {
+            bool existRecordFile = await ExistRecordFile();
+            RecordTxtEnable.Visibility = existRecordFile ? Visibility.Collapsed : Visibility.Visible;
+            ReRecordTxtEnable.Visibility = existRecordFile ? Visibility.Visible: Visibility.Collapsed;
         }
     }
 }

@@ -86,48 +86,112 @@
                         HorizontalAlignment="Center"
                         Orientation="Horizontal">
 
-                <Button Name="PrevBtn"
+                <Grid>
+                    <StackPanel Orientation="Vertical" Margin="10,0,10,0">
+                        <Button Name="PrevBtn"
                         Width="84" Height="84"
-                        Margin="20"
+                        Margin="20,20,20,30"
                         CornerRadius="90"
                         Click="PrevBtn_Click"
                         VerticalAlignment="Center">
-                    
-                    <Grid Margin="-10,-6,-10,-7">
-                        <Image x:Name="PrevBtnEnable" Source="ms-appx:///Assets/page_3_button_front.png" Stretch="Fill" />
-                        <Image x:Name="PrevBtnDisable" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_front1.png" 
-                               Stretch="Fill"/>
-                    </Grid>
-                </Button>
-                
-                <Button Name="RecordBtn" Click="VideoButton_Click" IsEnabled="True" Width="84" Height="84" Margin="20" CornerRadius="90" BorderThickness="1.0" HorizontalAlignment="Center">
-                    <Grid Margin="-10,-6,-10,-7">
-                        <Image x:Name="RecordEnableIcon" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_recording.png" Stretch="Fill" />
-                        <Image x:Name="RecordDisEnableIcon" Source="ms-appx:///Assets/page_3_button_recording1.png" 
-                               Stretch="Fill"/>
-                    </Grid>
-                </Button>
-                <Button Name="StopBtn" Click="StopBtn_Click" IsEnabled="False" Width="84" Height="84" Margin="20" CornerRadius="90" BorderThickness="1.0" HorizontalAlignment="Center">
-                    <Grid Margin="-10,-6,-10,-7">
-                        <Image x:Name="RecordStopEnableIcon" Source="ms-appx:///Assets/page_3_button_stop.png" Stretch="Fill" />
-                        <Image x:Name="RecordStopDisEnableIcon" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_stop1.png" 
-                               Stretch="Fill"/>
-                    </Grid>
-                </Button>
 
-                <Button x:Name="NextBtn"
-                        Click="Next_Click" 
-                        Width="84" Height="84" Margin="20" CornerRadius="90" BorderThickness="1.0" HorizontalAlignment="Center">
-                    <Grid Margin="-10,-6,-10,-7">
-                        <Image x:Name="NextEnableIcon" Source="ms-appx:///Assets/page_3_button_back.png" Stretch="Fill" />
-                        <Image x:Name="NextDisEnableIcon" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_back1.png" 
+                            <Grid Margin="-10,-6,-10,-7">
+                                <Image x:Name="PrevBtnEnable" Source="ms-appx:///Assets/page_3_button_front.png" Stretch="Fill" />
+                                <Image x:Name="PrevBtnDisable" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_front1.png" 
                                Stretch="Fill"/>
-                    </Grid>
-                </Button>
+                            </Grid>
+                        </Button>
+                        <Grid Margin="-10,-10,-10,-7" Width="65">
+                            <Image Source="ms-appx:///Assets/pre_txt.png" />
+                        </Grid>
+
+                        <!--<TextBlock Text="이전" 
+                                   x:Name="PrevText"
+                                   HorizontalAlignment="Center"
+                                   FontSize="30"
+                                   Foreground="White"/>-->
+                    </StackPanel>
+                </Grid>
+
+                <Grid>
+                    <StackPanel Orientation="Vertical" Margin="10,0,10,0">
+                        <Button Name="RecordBtn" 
+                                Click="VideoButton_Click" 
+                                IsEnabled="True" Width="84" Height="84" 
+                                Margin="20,20,20,30" 
+                                CornerRadius="90" BorderThickness="1.0" HorizontalAlignment="Center">
+                            <Grid Margin="-10,-6,-10,-7">
+                                <Image x:Name="RecordEnableIcon" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_recording.png" Stretch="Fill" />
+                                <Image x:Name="RecordDisEnableIcon" Source="ms-appx:///Assets/page_3_button_recording1.png" 
+                               Stretch="Fill"/>
+                            </Grid>
+                        </Button>
+                        <Grid Margin="-10,-10,-10,-7" >
+                            <Image x:Name="RecordTxtEnable" Width="65"  Visibility="Visible" Source="ms-appx:///Assets/record_txt.png" />
+                            <Image x:Name="ReRecordTxtEnable" Width="130" Visibility="Collapsed" Source="ms-appx:///Assets/rerecord_txt.png" Margin="0,-1,0,-19" />
+                        </Grid>
+                        <!--<TextBlock Text="녹화" 
+                                   x:Name="RecordText"
+                                   Visibility="Visible"
+                                   HorizontalAlignment="Center"
+                                   FontSize="30"
+                                   Foreground="White"/>-->
+                    </StackPanel>
+                </Grid>
+
+                <Grid>
+                    <StackPanel Orientation="Vertical" Margin="10,0,10,0">
+                        <Button Name="StopBtn" Click="StopBtn_Click" IsEnabled="False" 
+                                Width="84" Height="84" 
+                                Margin="20,20,20,30"  
+                                CornerRadius="90" BorderThickness="1.0" HorizontalAlignment="Center">
+                            <Grid Margin="-10,-6,-10,-7">
+                                <Image x:Name="RecordStopEnableIcon" Source="ms-appx:///Assets/page_3_button_stop.png" Stretch="Fill" />
+                                <Image x:Name="RecordStopDisEnableIcon" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_stop1.png" 
+                               Stretch="Fill"/>
+                            </Grid>
+                        </Button>
+                        <Grid Margin="-10,-10,-10,-7" Width="65">
+                            <Image Source="ms-appx:///Assets/stop_txt.png" />
+                        </Grid>
+                        <!--<TextBlock Text="중지" 
+                                   x:Name="StopText"
+                                   Visibility="Visible"
+                                   HorizontalAlignment="Center"
+                                   FontSize="30"
+                                   Foreground="White"/>-->
+                    </StackPanel>
+                </Grid>
+
+                <Grid>
+                    <StackPanel Orientation="Vertical" Margin="10,0,10,0">
+                        <Button x:Name="NextBtn"
+                                Click="Next_Click" 
+                                Width="84" Height="84" 
+                                Margin="20,20,20,30"
+                                CornerRadius="90" BorderThickness="1.0" HorizontalAlignment="Center">
+                            <Grid Margin="-10,-6,-10,-7">
+                                <Image x:Name="NextEnableIcon" Source="ms-appx:///Assets/page_3_button_back.png" Stretch="Fill" />
+                                <Image x:Name="NextDisEnableIcon" Visibility="Collapsed" Source="ms-appx:///Assets/page_3_button_back1.png" 
+                               Stretch="Fill"/>
+                            </Grid>
+                        </Button>
+                        <Grid Margin="-10,-10,-10,-7" Width="65">
+                            <Image Source="ms-appx:///Assets/next_txt.png" />
+                        </Grid>
+                        <!--<TextBlock Text="다음" 
+                                    x:Name="NextText"
+                                   Visibility="Visible"
+                                   HorizontalAlignment="Center"
+                                   FontSize="30"
+                                   Foreground="White"/>-->
+                    </StackPanel>
+                </Grid>
+
             </StackPanel>
 
             <CaptureElement Grid.Column="2" Name="PreviewControl" Stretch="Fill"/>
-            
+
         </Grid>
     </Grid>
 

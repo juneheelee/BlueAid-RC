@@ -14,7 +14,7 @@
                         Margin="0,0,0,50"
                         FontFamily="돋음"
                         Foreground="White"
-                        FontSize="70"
+                        FontSize="90"
                         FontWeight="Bold"
                         Text="질문2)  지금 입고 있는 옷 색깔을 다 말해보세요."/>
     </Grid>

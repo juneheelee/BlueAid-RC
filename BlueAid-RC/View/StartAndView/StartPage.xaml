@@ -19,7 +19,8 @@
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
 
-        <MediaPlayerElement x:Name="VideoPlayerElement" AreTransportControlsEnabled="False" HorizontalAlignment="Stretch" Grid.Column="1"/>
+        <MediaPlayerElement x:Name="VideoPlayerElement" AreTransportControlsEnabled="False"  Stretch="UniformToFill"
+                                HorizontalAlignment="Center" Grid.Column="1"/>
         <!--<Image Grid.Column="1" 
                Source="ms-appx:///Assets/ICON4801.png" 
                Stretch="Uniform"/>-->

@@ -195,8 +195,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\BadgeLogo.scale-100.png" />
+    <Content Include="Assets\chapter7.png" />
+    <Content Include="Assets\chapter8.png" />
     <Content Include="Assets\epp.mp3" />
     <Content Include="Assets\good.mp3" />
+    <Content Include="Assets\next_txt.png" />
     <Content Include="Assets\page_1_graphic.png" />
     <Content Include="Assets\page_3_button_back.png" />
     <Content Include="Assets\page_3_button_back1.png" />
@@ -208,6 +211,7 @@
     <Content Include="Assets\page_3_button_stop1.png" />
     <Content Include="Assets\picture1.png" />
     <Content Include="Assets\picture2.jpg" />
+    <Content Include="Assets\pre_txt.png" />
     <Content Include="Assets\Q1.mp3" />
     <Content Include="Assets\Q3.mp3" />
     <Content Include="Assets\Q4.mp3" />
@@ -217,7 +221,10 @@
     <Content Include="Assets\Question1.mp3" />
     <Content Include="Assets\Question2.mp3" />
     <Content Include="Assets\Question3.mp3" />
+    <Content Include="Assets\record_txt.png" />
+    <Content Include="Assets\rerecord_txt.png" />
     <Content Include="Assets\SplashScreen.scale-200.png" />
+    <Content Include="Assets\stop_txt.png" />
     <Content Include="Assets\StoreLogo.targetsize-24.png" />
     <Content Include="Assets\chapter1.mp4" />
     <Content Include="Assets\intro.mp4" />
