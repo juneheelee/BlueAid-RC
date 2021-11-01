@@ -14,60 +14,19 @@
             <RowDefinition Height="0.15*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"
+        <Viewbox>
+            <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"
                         FontFamily="돋음"
                         Foreground="White"
                         FontSize="90"
                         FontWeight="Bold"
                         Text="다음 신문사설을 읽어 주세요"/>
+        </Viewbox>
+        
 
         <Image Margin="60" 
                Grid.Row="1"
                Source="ms-appx:///Assets/chapter8.png"  Stretch="Fill"/>
 
     </Grid>
-    <!--<Grid Background="#1a2555">
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Margin="0,0,0,50"
-                        FontFamily="돋음"
-                        Foreground="White"
-                        FontSize="90"
-                        FontWeight="Bold"
-                        Text="다음 신문사설을 읽어 주세요"/>
-
-            <TextBlock  Margin="0,0,0,30"
-                        FontFamily="돋음"
-                        FontSize="40"
-                        FontWeight="SemiBold"
-                        Foreground="White"
-                        TextWrapping="Wrap"
-                        Text="10월이 막바지를 향해가는 가운데 서울·경기의 궁궐과 조선 왕릉 등 문화유산 주변에도 울긋불긋 아름다운 단풍이 물들고 있다."/>
-
-            <TextBlock  Margin="0,0,0,30"
-                        FontFamily="돋음"
-                        FontSize="40"
-                        FontWeight="SemiBold"
-                        Foreground="White"
-                        TextWrapping="Wrap"
-                        Text="문화재청 궁능유적본부는 최근 아름다운 문화유산과 함께 가을의 정취를 즐길 수 있도록 '궁궐과 조선 왕릉의 가을 단풍 시기'를 안내하고 다양한 가을 행사를 개최한다고 밝혔다."/>
-
-            <TextBlock  Margin="0,0,0,30"
-                        FontFamily="돋음"
-                        FontSize="40"
-                        FontWeight="SemiBold"
-                        Foreground="White"
-                        TextWrapping="Wrap"
-                        Text="올해 4대 궁과 종묘, 조선왕릉 내 가을 단풍은 지난 25일을 시작으로 다음 달 20일까지 대략 한 달간 이어질 것으로 보인다."/>
-
-            <TextBlock  Margin="0,20,0,0"
-                        FontFamily="돋음"
-                        FontSize="40"
-                        FontWeight="SemiBold"
-                        Foreground="White"
-                        TextWrapping="Wrap"
-                        Text="궁궐과 조선 왕릉은 도심에 가까우면서도 단풍을 구경할 수 있는 최적의 장소로 손꼽힌다."/>
-        </StackPanel>
-
-    </Grid>-->
 </UserControl>

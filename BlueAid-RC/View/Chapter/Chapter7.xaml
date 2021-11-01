@@ -14,82 +14,18 @@
             <RowDefinition Height="0.15*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"
+        <Viewbox>
+            <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"
                         FontFamily="돋음"
                         Foreground="White"
                         FontSize="90"
                         FontWeight="Bold"
                         Text="다음 시나리오를 읽어 주세요"/>
-       
-
+        </Viewbox>
+        
         <Image Margin="60" 
                Grid.Row="1"
                Source="ms-appx:///Assets/chapter7.png"  Stretch="Fill"/>
 
     </Grid>
-    <!--<Grid Background="#1a2555">
-        <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextBlock  HorizontalAlignment="Center" VerticalAlignment="Center"
-                        Margin="0,0,0,50"
-                        FontFamily="돋음"
-                        Foreground="White"
-                        FontSize="90"
-                        FontWeight="Bold"
-                        Text="다음 시나리오를 읽어 주세요"/>
-
-            <Image Margin="10" 
-               Grid.Row="1"
-               Source="ms-appx:///Assets/picture1.png"  Stretch="Fill"/>
-            --><!--<TextBlock  Margin="0,0,0,10"
-                        FontFamily="돋음"
-                        FontSize="35"
-                        Foreground="White"
-                        FontWeight="Bold"
-                        TextWrapping="Wrap"
-                        Text="사도세자 : 저는 잘못한 것이 없습니다."/>
-
-            <TextBlock  Margin="0,0,0,40"
-                        FontFamily="돋음"
-                        FontSize="35"
-                        Foreground="White"
-                        FontWeight="Bold"
-                        TextWrapping="Wrap"
-                        Text="영조 : 네가 이 애비를 죽이려고 미리 상복까지 입었구나!"/>
-
-            <TextBlock  Margin="0,0,0,10"
-                        FontFamily="돋음"
-                        Foreground="White"
-                        FontSize="35"
-                        FontWeight="Bold"
-                        TextWrapping="Wrap"
-                        Text="사도세자 : 대비마마와 중전마마 초상때부터 입어온 상복입니다."/>
-
-            <TextBlock  Margin="0,0,0,40"
-                        FontFamily="돋음"
-                        Foreground="White"
-                        FontSize="35"
-                        FontWeight="Bold"
-                        TextWrapping="Wrap"
-                        Text="영조 : 이것은 다 무엇이냐?! 니가 궁궐 후원에 무덤 파고 관 짜고 상복 입고, 날 저주하며 죽이려고 한 것 아니냐?!"/>
-
-            <TextBlock  Margin="0,0,0,10"
-                        FontFamily="돋음"
-                        Foreground="White"
-                        FontSize="35"
-                        FontWeight="Bold"
-                        TextWrapping="Wrap"
-                        Text="사도세자 : 전하께서 저를 죽은 사람 취급하기에 제가 제 무덤을 판 것입니다."/>
-
-            <TextBlock  Margin="0,0,0,40"
-                        FontFamily="돋음"
-                        Foreground="White"
-                        FontSize="35"
-                        FontWeight="Bold"
-                        TextWrapping="Wrap"
-                        Text="영조 : 당장 저놈을 뒤주에 가두어라! 내가 죽으면 나라가 망하지, 니가 죽으면 300년 종사는 보전할 수 있다."/>--><!--
-
-            
-        </StackPanel>
-        
-    </Grid>-->
 </UserControl>

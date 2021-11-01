@@ -18,14 +18,14 @@
             <RowDefinition Height="0.4*"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid >
+        <Viewbox >
             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                    Text="'이피피'를 영상과 같이 6번 소리 내어 보세요"
                    FontFamily="돋음"
                    Foreground="White"
                    FontSize="90"
                    FontWeight="Bold"/>
-        </Grid>
+        </Viewbox>
         
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>

@@ -27,8 +27,8 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="0.25*"/>
             </Grid.ColumnDefinitions>
-            <Grid />
-            <Viewbox Grid.Column="1">
+
+            <Viewbox Grid.Column="1" >
                 <FlipView x:Name="FlipViewControl" IsHitTestVisible="False">
                     <FlipView.ItemsPanel>
                         <ItemsPanelTemplate>
@@ -48,6 +48,7 @@
                     <questions:Question3/>
                 </FlipView>
             </Viewbox>
+            
 
             <Grid  Grid.Column="0">
                 <Button Click="Home_Click" 

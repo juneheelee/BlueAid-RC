@@ -10,13 +10,16 @@
     d:DesignWidth="1920">
 
     <Grid Background="#1a2555">
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+        <Viewbox>
+            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
                    Text="아~~ 하고 한번 더 최대한 길게 소리 내어 보세요"
                    FontFamily="돋음"
                    Foreground="White"
                    TextWrapping="Wrap"
                    FontSize="85"
                    FontWeight="Bold"/>
+        </Viewbox>
+        
         <!--<Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="*"/>
