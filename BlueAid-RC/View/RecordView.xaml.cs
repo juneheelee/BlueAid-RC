@@ -354,9 +354,8 @@ namespace BlueAid_RC.View
 
                 Debug.WriteLine("Starting recording to " + videoFile.Path);
 
-                await _mediaCapture.StartRecordToStorageFileAsync(encodingProfile, videoFile);
-
                 _isRecording = true;
+                await _mediaCapture.StartRecordToStorageFileAsync(encodingProfile, videoFile);
 
                 Debug.WriteLine("Started recording!");
             }
