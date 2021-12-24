@@ -12,7 +12,7 @@
     <DefaultLanguage>ko-KR</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion Condition=" '$(TargetPlatformVersion)' == '' ">10.0.19041.0</TargetPlatformVersion>
-    <TargetPlatformMinVersion>10.0.17134.0</TargetPlatformMinVersion>
+    <TargetPlatformMinVersion>10.0.15063.0</TargetPlatformMinVersion>
     <MinimumVisualStudioVersion>14</MinimumVisualStudioVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{A5A43C5B-DE2A-4C0C-9213-0A381AF9435A};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -184,6 +184,9 @@
     <Compile Include="View\StartAndView\EndPage.xaml.cs">
       <DependentUpon>EndPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\StartAndView\PreviewPage.xaml.cs">
+      <DependentUpon>PreviewPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StartAndView\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
@@ -199,6 +202,7 @@
     <Content Include="Assets\chapter8.png" />
     <Content Include="Assets\epp.mp3" />
     <Content Include="Assets\good.mp3" />
+    <Content Include="Assets\preview.mp4" />
     <Content Include="Assets\next_txt.png" />
     <Content Include="Assets\page_1_graphic.png" />
     <Content Include="Assets\page_3_button_back.png" />
@@ -230,6 +234,7 @@
     <Content Include="Assets\intro.mp4" />
     <Content Include="Assets\chapter3.mp4" />
     <Content Include="Assets\test.mp4" />
+    <Content Include="Assets\chapter5.png" />
     <Content Include="Images\blue.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -316,6 +321,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\StartAndView\EndPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StartAndView\PreviewPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

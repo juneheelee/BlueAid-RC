@@ -33,7 +33,7 @@
                 <ColumnDefinition Width="4*"/>
                 <ColumnDefinition Width="0.5*"/>
             </Grid.ColumnDefinitions>
-            <MediaPlayerElement x:Name="VideoPlayerElement" AreTransportControlsEnabled="False"  Stretch="UniformToFill"
+            <MediaPlayerElement x:Name="VideoPlayerElement" AreTransportControlsEnabled="False"  Stretch="Fill"
                                 HorizontalAlignment="Center" Grid.Column="1"/>
         </Grid>
         

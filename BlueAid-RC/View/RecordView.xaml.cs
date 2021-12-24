@@ -181,7 +181,6 @@ namespace BlueAid_RC.View
                 await StartRecordingAsync();
                 await _audioHandler?.StartAudioRecording();
             }
-
             // After starting or stopping video recording, update the UI to reflect the MediaCapture state
             UpdateCaptureControls();
             UpdatePrevButton();

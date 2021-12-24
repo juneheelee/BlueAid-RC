@@ -35,7 +35,7 @@
             </Grid.ColumnDefinitions>
             <Grid  Grid.Column="1">
                 <MediaPlayerElement x:Name="VideoPlayerElement" AreTransportControlsEnabled="False" 
-                                Stretch="UniformToFill"
+                                Stretch="Fill"
                                 HorizontalAlignment="Center"/>
             </Grid>
             

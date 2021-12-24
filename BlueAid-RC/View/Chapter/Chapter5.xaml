@@ -20,12 +20,12 @@
                    FontSize="90"
                    Foreground="White"
                    FontWeight="Bold"
-                   Text="다음 그림에서 보이는 것 3가지를 말씀해 주세요"/>
+                   Text="다음 그림에서 보이는 행위 3가지를 말씀해 주세요"/>
         </Viewbox>
         
         <Image Margin="10" 
                Grid.Row="1"
-               Source="ms-appx:///Assets/picture1.png"  Stretch="Fill"/>
+               Source="ms-appx:///Assets/chapter5.png"  Stretch="Fill"/>
 
     </Grid>
 </UserControl>
