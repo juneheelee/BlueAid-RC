@@ -233,7 +233,6 @@
     <Content Include="Assets\chapter1.mp4" />
     <Content Include="Assets\intro.mp4" />
     <Content Include="Assets\chapter3.mp4" />
-    <Content Include="Assets\test.mp4" />
     <Content Include="Assets\chapter5.png" />
     <Content Include="Images\blue.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

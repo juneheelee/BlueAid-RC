@@ -48,7 +48,6 @@ namespace BlueAid_RC.View.StartAndView
         {
             userInfo = e.Parameter as User;
 
-            //VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/intro_test2.mp4"));
             VideoPlayerElement.Source = MediaSource.CreateFromUri(new Uri("ms-appx:///Assets/preview.mp4"));
             videoPlayer = VideoPlayerElement.MediaPlayer;
             videoPlayer.MediaEnded += VideoPlayer_MediaEnded;

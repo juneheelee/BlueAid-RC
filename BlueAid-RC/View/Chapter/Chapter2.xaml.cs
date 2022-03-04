@@ -29,7 +29,6 @@ namespace BlueAid_RC.View.Chapter
         {
             this.InitializeComponent();
 
-            //Init();
         }
 
         public void Init()
